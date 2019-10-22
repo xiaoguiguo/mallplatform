@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.doudouJ</groupId>
+    <artifactId>mallplatform</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>mall-common</module>
+        <module>mall-admin</module>
+        <module>mall-check</module>
+        <module>mall-h5portal</module>
+        <module>mall-pcportal</module>
+        <module>mall-search</module>
+        <module>mall-trade</module>
+        <module>mall-pay</module>
+        <module>mall-account</module>
+        <module>mall-merchandise</module>
+        <module>mall-coupon</module>
+        <module>mall-crontab</module>
+    </modules>
+
+
+</project>
