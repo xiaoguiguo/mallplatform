@@ -1,6 +1,28 @@
--- 执行建表sql语句之前，需要手动新建7个数据库，库名分别为:mallpf_sys_config,mallpf_accounts,mallpf_trade,
+-- 执行建表sql,建7个数据库，库名分别为:mallpf_sys_config,mallpf_accounts,mallpf_trade,
 -- mallpf_pay,mallpf_merchandise,mallpf_check,mallpf_coupon
 -- 统一使用utf8编码，排序使用utf8_general_ci
+
+-- 系统配置库
+DROP DATABASE IF EXISTS `mallpf_sys_config`;
+CREATE DATABASE  `mallpf_sys_config` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- 账户系统库
+DROP DATABASE IF EXISTS `mallpf_accounts`;
+CREATE DATABASE  `mallpf_accounts` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- 交易系统库
+DROP DATABASE IF EXISTS `mallpf_trade`;
+CREATE DATABASE  `mallpf_trade` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- 支付系统库
+DROP DATABASE IF EXISTS `mallpf_pay`;
+CREATE DATABASE  `mallpf_pay` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- 商品系统库
+DROP DATABASE IF EXISTS `mallpf_merchandise`;
+CREATE DATABASE  `mallpf_merchandise` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- 对账系统库
+DROP DATABASE IF EXISTS `mallpf_check`;
+CREATE DATABASE  `mallpf_check` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- 优惠系统库
+DROP DATABASE IF EXISTS `mallpf_coupon`;
+CREATE DATABASE  `mallpf_coupon` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 -- 系统配置库
 use mallpf_sys_config;
@@ -84,12 +106,13 @@ CREATE TABLE `sys_role_menu` (
 
 DROP TABLE if exists `sys_data_dict`;
 CREATE TABLE `sys_data_dict` (
-  `id`  bigint(20) NOT NULL AUTO_INCREMENT COMMENT '角色id',
+  `id`  bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `dict_id` bigint(20) DEFAULT NULL COMMENT '字典id',
   `name`  varchar(32) DEFAULT NULL COMMENT '字典名称',
   `value` varchar(64) DEFAULT NULL COMMENT '字典值',
   `label` varchar(64) DEFAULT NULL COMMENT '字典标签',
   `sort`  int(11) DEFAULT NULL COMMENT '字典排序',
-  PRIMARY KEY (`id`,`name`,`value`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统数据字典表';
 
 -- 账户系统库mall-account
@@ -155,7 +178,7 @@ CREATE TABLE `merchant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商户信息表';
 
 
--- 交易系统库mall-trade
+-- 交易系统库
 use mallpf_trade;
 DROP TABLE if exists `trade`;
 CREATE TABLE `trade` (
@@ -258,7 +281,7 @@ CREATE TABLE `trade_return_apply` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单退货申请表';
 
--- 支付系统库mall-pay
+-- 支付系统库
 use mallpf_pay;
 DROP TABLE if exists `pay_flow`;
 CREATE TABLE `pay_flow` (
@@ -304,7 +327,7 @@ CREATE TABLE `pay_channel_config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='支付渠道配置表';
 
--- 商品系统库 mall-merchandise
+-- 商品系统库
 use mallpf_merchandise;
 DROP TABLE if exists `merchandise`;
 CREATE TABLE `merchandise` (
