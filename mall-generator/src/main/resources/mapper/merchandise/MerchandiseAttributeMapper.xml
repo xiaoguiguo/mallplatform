@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.merchandise.dao.MerchandiseAttributeMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.merchandise.model.MerchandiseAttribute">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="merchandise_attribute_category_id" jdbcType="BIGINT" property="merchandiseAttributeCategoryId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="select_type" jdbcType="BIT" property="selectType" />
+    <result column="input_type" jdbcType="BIT" property="inputType" />
+    <result column="input_list" jdbcType="VARCHAR" property="inputList" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="filter_type" jdbcType="BIT" property="filterType" />
+    <result column="search_type" jdbcType="BIT" property="searchType" />
+    <result column="related_type" jdbcType="BIT" property="relatedType" />
+    <result column="type" jdbcType="BIT" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, merchandise_attribute_category_id, name, select_type, input_type, input_list, 
+    sort, filter_type, search_type, related_type, type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from merchandise_attribute
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from merchandise_attribute
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.merchandise.model.MerchandiseAttribute">
+    insert into merchandise_attribute (id, merchandise_attribute_category_id, 
+      name, select_type, input_type, 
+      input_list, sort, filter_type, 
+      search_type, related_type, type)
+    values (#{id,jdbcType=BIGINT}, #{merchandiseAttributeCategoryId,jdbcType=BIGINT}, 
+      #{name,jdbcType=VARCHAR}, #{selectType,jdbcType=BIT}, #{inputType,jdbcType=BIT}, 
+      #{inputList,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{filterType,jdbcType=BIT}, 
+      #{searchType,jdbcType=BIT}, #{relatedType,jdbcType=BIT}, #{type,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.merchandise.model.MerchandiseAttribute">
+    insert into merchandise_attribute
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="merchandiseAttributeCategoryId != null">
+        merchandise_attribute_category_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="selectType != null">
+        select_type,
+      </if>
+      <if test="inputType != null">
+        input_type,
+      </if>
+      <if test="inputList != null">
+        input_list,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="filterType != null">
+        filter_type,
+      </if>
+      <if test="searchType != null">
+        search_type,
+      </if>
+      <if test="relatedType != null">
+        related_type,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseAttributeCategoryId != null">
+        #{merchandiseAttributeCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="selectType != null">
+        #{selectType,jdbcType=BIT},
+      </if>
+      <if test="inputType != null">
+        #{inputType,jdbcType=BIT},
+      </if>
+      <if test="inputList != null">
+        #{inputList,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="filterType != null">
+        #{filterType,jdbcType=BIT},
+      </if>
+      <if test="searchType != null">
+        #{searchType,jdbcType=BIT},
+      </if>
+      <if test="relatedType != null">
+        #{relatedType,jdbcType=BIT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.merchandise.model.MerchandiseAttribute">
+    update merchandise_attribute
+    <set>
+      <if test="merchandiseAttributeCategoryId != null">
+        merchandise_attribute_category_id = #{merchandiseAttributeCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="selectType != null">
+        select_type = #{selectType,jdbcType=BIT},
+      </if>
+      <if test="inputType != null">
+        input_type = #{inputType,jdbcType=BIT},
+      </if>
+      <if test="inputList != null">
+        input_list = #{inputList,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="filterType != null">
+        filter_type = #{filterType,jdbcType=BIT},
+      </if>
+      <if test="searchType != null">
+        search_type = #{searchType,jdbcType=BIT},
+      </if>
+      <if test="relatedType != null">
+        related_type = #{relatedType,jdbcType=BIT},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.merchandise.model.MerchandiseAttribute">
+    update merchandise_attribute
+    set merchandise_attribute_category_id = #{merchandiseAttributeCategoryId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      select_type = #{selectType,jdbcType=BIT},
+      input_type = #{inputType,jdbcType=BIT},
+      input_list = #{inputList,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      filter_type = #{filterType,jdbcType=BIT},
+      search_type = #{searchType,jdbcType=BIT},
+      related_type = #{relatedType,jdbcType=BIT},
+      type = #{type,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.pay.dao.PayChannelMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.pay.model.PayChannel">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pay_channel_name" jdbcType="VARCHAR" property="payChannelName" />
+    <result column="pay_channel_short_name" jdbcType="VARCHAR" property="payChannelShortName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pay_channel_name, pay_channel_short_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_channel
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pay_channel
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.pay.model.PayChannel">
+    insert into pay_channel (id, pay_channel_name, pay_channel_short_name
+      )
+    values (#{id,jdbcType=BIGINT}, #{payChannelName,jdbcType=VARCHAR}, #{payChannelShortName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.pay.model.PayChannel">
+    insert into pay_channel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="payChannelName != null">
+        pay_channel_name,
+      </if>
+      <if test="payChannelShortName != null">
+        pay_channel_short_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="payChannelName != null">
+        #{payChannelName,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannelShortName != null">
+        #{payChannelShortName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.pay.model.PayChannel">
+    update pay_channel
+    <set>
+      <if test="payChannelName != null">
+        pay_channel_name = #{payChannelName,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannelShortName != null">
+        pay_channel_short_name = #{payChannelShortName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.pay.model.PayChannel">
+    update pay_channel
+    set pay_channel_name = #{payChannelName,jdbcType=VARCHAR},
+      pay_channel_short_name = #{payChannelShortName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

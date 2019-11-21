@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator type="com.doudouj.utils.MyCommentGenerator">
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/mallpf_merchandise?serverTimezone=UTC" userId="root" password="12345678">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.doudouj.merchandise.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mapper.merchandise" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao类存放位置-->
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+        -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.doudouj.merchandise.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--生成对应表及类名-->
+        <!--<table tableName="stocktradeinfo" domainObjectName="StockTradeInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <table tableName="brand" domainObjectName="Brand" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <!--添加属性useActualColumnNames为true,那么生成的对象字段就跟表一样-->
+            <property name="id" value="true"/>
+            <property name="name" value="true"/>
+            <property name="sort" value="true"/>
+            <property name="merchandiseCount" value="true"/>
+            <property name="merchandiseCommentCount" value="true"/>
+            <property name="logo" value="true"/>
+            <property name="bigPic" value="true"/>
+            <property name="brandStory" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+        <table tableName="merchandise" domainObjectName="Merchandise" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="brandId" value="true"/>
+            <property name="merchandiseCategoryId" value="true"/>
+            <property name="merchandiseAttributeCategoryId" value="true"/>
+            <property name="name" value="true"/>
+            <property name="pic" value="true"/>
+            <property name="publishStatus" value="true"/>
+            <property name="newStatus" value="true"/>
+            <property name="recommendStatus" value="true"/>
+            <property name="verifyStatus" value="true"/>
+            <property name="sort" value="true"/>
+            <property name="sale" value="true"/>
+            <property name="price" value="true"/>
+            <property name="promotionPrice" value="true"/>
+            <property name="giftGrowth" value="true"/>
+            <property name="giftPoint" value="true"/>
+            <property name="usePointLimit" value="true"/>
+            <property name="subTitle" value="true"/>
+            <property name="description" value="true"/>
+            <property name="marketPrice" value="true"/>
+            <property name="stock" value="true"/>
+            <property name="lowStock" value="true"/>
+            <property name="unit" value="true"/>
+            <property name="serviceIds" value="true"/>
+            <property name="keywords" value="true"/>
+            <property name="albumPics" value="true"/>
+            <property name="detailTitle" value="true"/>
+            <property name="detailDesc" value="true"/>
+            <property name="detailHtml" value="true"/>
+            <property name="promotionStartTime" value="true"/>
+            <property name="promotionEndTime" value="true"/>
+            <property name="promotionPerLimit" value="true"/>
+            <property name="promotionType" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+        <table tableName="merchandise_attribute" domainObjectName="MerchandiseAttribute" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="merchandiseAttributeCategoryId" value="true"/>
+            <property name="name" value="true"/>
+            <property name="selectType" value="true"/>
+            <property name="inputType" value="true"/>
+            <property name="inputList" value="true"/>
+            <property name="sort" value="true"/>
+            <property name="filterType" value="true"/>
+            <property name="searchType" value="true"/>
+            <property name="relatedType" value="true"/>
+            <property name="type" value="true"/>
+        </table>
+        <table tableName="merchandise_attribute_category" domainObjectName="MerchandiseAttributeCategory" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="name" value="true"/>
+            <property name="attributeCount" value="true"/>
+            <property name="paramCount" value="true"/>
+        </table>
+        <table tableName="merchandise_attribute_value" domainObjectName="MerchandiseAttributeValue" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="merchandiseId" value="true"/>
+            <property name="merchandiseAttributeId" value="true"/>
+            <property name="value" value="true"/>
+        </table>
+        <table tableName="merchandiseCategory" domainObjectName="MerchandiseCategory" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="PId" value="true"/>
+            <property name="name" value="true"/>
+            <property name="level" value="true"/>
+            <property name="merchandiseCount" value="true"/>
+            <property name="merchandiseUnit" value="true"/>
+            <property name="navStatus" value="true"/>
+            <property name="showStatus" value="true"/>
+            <property name="sort" value="true"/>
+            <property name="icon" value="true"/>
+            <property name="description" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+        <table tableName="merchandise_comment" domainObjectName="MerchandiseComment" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="merchandiseId" value="true"/>
+            <property name="acctName" value="true"/>
+            <property name="merchandiseName" value="true"/>
+            <property name="star" value="true"/>
+            <property name="showStatus" value="true"/>
+            <property name="merchandiseAttribute" value="true"/>
+            <property name="content" value="true"/>
+            <property name="pics" value="true"/>
+            <property name="acctIcon" value="true"/>
+            <property name="likeCount" value="true"/>
+            <property name="unlikeCount" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

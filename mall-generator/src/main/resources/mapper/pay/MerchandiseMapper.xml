@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.pay.dao.MerchandiseMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.pay.model.Merchandise">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pcc_name" jdbcType="VARCHAR" property="pccName" />
+    <result column="pcc_short_name" jdbcType="VARCHAR" property="pccShortName" />
+    <result column="pct_id" jdbcType="BIGINT" property="pctId" />
+    <result column="config_params" jdbcType="VARCHAR" property="configParams" />
+    <result column="pcc_status" jdbcType="BIT" property="pccStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pcc_name, pcc_short_name, pct_id, config_params, pcc_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_channel_config
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pay_channel_config
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.pay.model.Merchandise">
+    insert into pay_channel_config (id, pcc_name, pcc_short_name, 
+      pct_id, config_params, pcc_status
+      )
+    values (#{id,jdbcType=BIGINT}, #{pccName,jdbcType=VARCHAR}, #{pccShortName,jdbcType=VARCHAR}, 
+      #{pctId,jdbcType=BIGINT}, #{configParams,jdbcType=VARCHAR}, #{pccStatus,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.pay.model.Merchandise">
+    insert into pay_channel_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pccName != null">
+        pcc_name,
+      </if>
+      <if test="pccShortName != null">
+        pcc_short_name,
+      </if>
+      <if test="pctId != null">
+        pct_id,
+      </if>
+      <if test="configParams != null">
+        config_params,
+      </if>
+      <if test="pccStatus != null">
+        pcc_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="pccName != null">
+        #{pccName,jdbcType=VARCHAR},
+      </if>
+      <if test="pccShortName != null">
+        #{pccShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="pctId != null">
+        #{pctId,jdbcType=BIGINT},
+      </if>
+      <if test="configParams != null">
+        #{configParams,jdbcType=VARCHAR},
+      </if>
+      <if test="pccStatus != null">
+        #{pccStatus,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.pay.model.Merchandise">
+    update pay_channel_config
+    <set>
+      <if test="pccName != null">
+        pcc_name = #{pccName,jdbcType=VARCHAR},
+      </if>
+      <if test="pccShortName != null">
+        pcc_short_name = #{pccShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="pctId != null">
+        pct_id = #{pctId,jdbcType=BIGINT},
+      </if>
+      <if test="configParams != null">
+        config_params = #{configParams,jdbcType=VARCHAR},
+      </if>
+      <if test="pccStatus != null">
+        pcc_status = #{pccStatus,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.pay.model.Merchandise">
+    update pay_channel_config
+    set pcc_name = #{pccName,jdbcType=VARCHAR},
+      pcc_short_name = #{pccShortName,jdbcType=VARCHAR},
+      pct_id = #{pctId,jdbcType=BIGINT},
+      config_params = #{configParams,jdbcType=VARCHAR},
+      pcc_status = #{pccStatus,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

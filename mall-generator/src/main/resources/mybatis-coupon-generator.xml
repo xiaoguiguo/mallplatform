@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/mallpf_check?serverTimezone=UTC" userId="root" password="12345678">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.doudouj.coupon.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mapper.coupon" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao类存放位置-->
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+        -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.doudouj.coupon.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--生成对应表及类名-->
+        <!--<table tableName="stocktradeinfo" domainObjectName="StockTradeInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <table tableName="coupon" domainObjectName="Coupon" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <!--添加属性useActualColumnNames为true,那么生成的对象字段就跟表一样-->
+            <property name="id" value="true"/>
+            <property name="type" value="true"/>
+            <property name="name" value="true"/>
+            <property name="platform" value="true"/>
+            <property name="count" value="true"/>
+            <property name="amount" value="true"/>
+            <property name="perLimit" value="true"/>
+            <property name="startTime" value="true"/>
+            <property name="endTime" value="true"/>
+            <property name="useType" value="true"/>
+            <property name="note" value="true"/>
+            <property name="publishCount" value="true"/>
+            <property name="useCount" value="true"/>
+            <property name="receiveCount" value="true"/>
+            <property name="receiveTime" value="true"/>
+            <property name="code" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+        <table tableName="coupon_merchandise" domainObjectName="CouponMerchandise" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="couponId" value="true"/>
+            <property name="merchandiseId" value="true"/>
+            <property name="merchandiseName" value="true"/>
+        </table>
+        <table tableName="coupon_merchandise_category" domainObjectName="CouponMerchandiseCategory" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="couponId" value="true"/>
+            <property name="merchandiseCategoryId" value="true"/>
+            <property name="merchandiseCategoryName" value="true"/>
+            <property name="pMerchandiseCategoryName" value="true"/>
+        </table>
+        <table tableName="home_advertise" domainObjectName="HomeAdvertise" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="name" value="true"/>
+            <property name="type" value="true"/>
+            <property name="pic" value="true"/>
+            <property name="startTime" value="true"/>
+            <property name="endTime" value="true"/>
+            <property name="adStatus" value="true"/>
+            <property name="clickCount" value="true"/>
+            <property name="orderCount" value="true"/>
+            <property name="url" value="true"/>
+            <property name="note" value="true"/>
+            <property name="sort" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+        <table tableName="home_brand" domainObjectName="HomeBrand" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="brandId" value="true"/>
+            <property name="brandName" value="true"/>
+            <property name="recommendStatus" value="true"/>
+            <property name="sort" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+        <table tableName="home_new_merchandise" domainObjectName="HomeNewMerchandise" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="merchandiseId" value="true"/>
+            <property name="merchandiseName" value="true"/>
+            <property name="recommendStatus" value="true"/>
+            <property name="sort" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+        <table tableName="home_recommend_merchandise" domainObjectName="HomeRecommendMerchandise" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="merchandiseId" value="true"/>
+            <property name="merchandiseName" value="true"/>
+            <property name="recommendStatus" value="true"/>
+            <property name="sort" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

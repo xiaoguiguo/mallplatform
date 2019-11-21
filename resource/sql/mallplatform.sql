@@ -339,7 +339,7 @@ CREATE TABLE `merchandise` (
   `pic` varchar(255) DEFAULT NULL COMMENT '商品图片',
   `publish_status`  tinyint(1) DEFAULT NULL COMMENT '上架状态0下架，1上架',
   `new_status`  tinyint(1) DEFAULT NULL COMMENT '新品状态0不是新品，1是新品',
-  `recommand_status`  tinyint(1) DEFAULT NULL COMMENT '推荐状态0不推荐，1推荐',
+  `recommend_status`  tinyint(1) DEFAULT NULL COMMENT '推荐状态0不推荐，1推荐',
   `verify_status` tinyint(1) DEFAULT NULL COMMENT '审核状态0未审核1审核通过',
   `sort`  int(11) DEFAULT NULL COMMENT '排序',
   `sale`  int(11) DEFAULT NULL COMMENT '销量',

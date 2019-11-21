@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.coupon.dao.CouponMerchandiseCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.coupon.model.CouponMerchandiseCategory">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="coupon_id" jdbcType="BIGINT" property="couponId" />
+    <result column="merchandise_category_id" jdbcType="BIGINT" property="merchandiseCategoryId" />
+    <result column="merchandise_category_name" jdbcType="VARCHAR" property="merchandiseCategoryName" />
+    <result column="p_merchandise_category_name" jdbcType="VARCHAR" property="pMerchandiseCategoryName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, coupon_id, merchandise_category_id, merchandise_category_name, p_merchandise_category_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_merchandise_category
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from coupon_merchandise_category
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.coupon.model.CouponMerchandiseCategory">
+    insert into coupon_merchandise_category (id, coupon_id, merchandise_category_id, 
+      merchandise_category_name, p_merchandise_category_name
+      )
+    values (#{id,jdbcType=BIGINT}, #{couponId,jdbcType=BIGINT}, #{merchandiseCategoryId,jdbcType=BIGINT}, 
+      #{merchandiseCategoryName,jdbcType=VARCHAR}, #{pMerchandiseCategoryName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.coupon.model.CouponMerchandiseCategory">
+    insert into coupon_merchandise_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="merchandiseCategoryId != null">
+        merchandise_category_id,
+      </if>
+      <if test="merchandiseCategoryName != null">
+        merchandise_category_name,
+      </if>
+      <if test="pMerchandiseCategoryName != null">
+        p_merchandise_category_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseCategoryId != null">
+        #{merchandiseCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseCategoryName != null">
+        #{merchandiseCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="pMerchandiseCategoryName != null">
+        #{pMerchandiseCategoryName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.coupon.model.CouponMerchandiseCategory">
+    update coupon_merchandise_category
+    <set>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseCategoryId != null">
+        merchandise_category_id = #{merchandiseCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseCategoryName != null">
+        merchandise_category_name = #{merchandiseCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="pMerchandiseCategoryName != null">
+        p_merchandise_category_name = #{pMerchandiseCategoryName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.coupon.model.CouponMerchandiseCategory">
+    update coupon_merchandise_category
+    set coupon_id = #{couponId,jdbcType=BIGINT},
+      merchandise_category_id = #{merchandiseCategoryId,jdbcType=BIGINT},
+      merchandise_category_name = #{merchandiseCategoryName,jdbcType=VARCHAR},
+      p_merchandise_category_name = #{pMerchandiseCategoryName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

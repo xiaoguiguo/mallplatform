@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.merchandise.dao.MerchandiseCommentMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.merchandise.model.MerchandiseComment">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="merchandise_id" jdbcType="BIGINT" property="merchandiseId" />
+    <result column="acct_name" jdbcType="VARCHAR" property="acctName" />
+    <result column="merchandise_name" jdbcType="VARCHAR" property="merchandiseName" />
+    <result column="star" jdbcType="BIT" property="star" />
+    <result column="show_status" jdbcType="BIT" property="showStatus" />
+    <result column="merchandise_attribute" jdbcType="VARCHAR" property="merchandiseAttribute" />
+    <result column="pics" jdbcType="VARCHAR" property="pics" />
+    <result column="acct_icon" jdbcType="VARCHAR" property="acctIcon" />
+    <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+    <result column="unlike_count" jdbcType="INTEGER" property="unlikeCount" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.doudouj.merchandise.model.MerchandiseComment">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, merchandise_id, acct_name, merchandise_name, star, show_status, merchandise_attribute, 
+    pics, acct_icon, like_count, unlike_count, create_time, modify_time
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from merchandise_comment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from merchandise_comment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.merchandise.model.MerchandiseComment">
+    insert into merchandise_comment (id, merchandise_id, acct_name, 
+      merchandise_name, star, show_status, 
+      merchandise_attribute, pics, acct_icon, 
+      like_count, unlike_count, create_time, 
+      modify_time, content)
+    values (#{id,jdbcType=BIGINT}, #{merchandiseId,jdbcType=BIGINT}, #{acctName,jdbcType=VARCHAR}, 
+      #{merchandiseName,jdbcType=VARCHAR}, #{star,jdbcType=BIT}, #{showStatus,jdbcType=BIT}, 
+      #{merchandiseAttribute,jdbcType=VARCHAR}, #{pics,jdbcType=VARCHAR}, #{acctIcon,jdbcType=VARCHAR}, 
+      #{likeCount,jdbcType=INTEGER}, #{unlikeCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.merchandise.model.MerchandiseComment">
+    insert into merchandise_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="merchandiseId != null">
+        merchandise_id,
+      </if>
+      <if test="acctName != null">
+        acct_name,
+      </if>
+      <if test="merchandiseName != null">
+        merchandise_name,
+      </if>
+      <if test="star != null">
+        star,
+      </if>
+      <if test="showStatus != null">
+        show_status,
+      </if>
+      <if test="merchandiseAttribute != null">
+        merchandise_attribute,
+      </if>
+      <if test="pics != null">
+        pics,
+      </if>
+      <if test="acctIcon != null">
+        acct_icon,
+      </if>
+      <if test="likeCount != null">
+        like_count,
+      </if>
+      <if test="unlikeCount != null">
+        unlike_count,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseId != null">
+        #{merchandiseId,jdbcType=BIGINT},
+      </if>
+      <if test="acctName != null">
+        #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseName != null">
+        #{merchandiseName,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null">
+        #{star,jdbcType=BIT},
+      </if>
+      <if test="showStatus != null">
+        #{showStatus,jdbcType=BIT},
+      </if>
+      <if test="merchandiseAttribute != null">
+        #{merchandiseAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="pics != null">
+        #{pics,jdbcType=VARCHAR},
+      </if>
+      <if test="acctIcon != null">
+        #{acctIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="likeCount != null">
+        #{likeCount,jdbcType=INTEGER},
+      </if>
+      <if test="unlikeCount != null">
+        #{unlikeCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.merchandise.model.MerchandiseComment">
+    update merchandise_comment
+    <set>
+      <if test="merchandiseId != null">
+        merchandise_id = #{merchandiseId,jdbcType=BIGINT},
+      </if>
+      <if test="acctName != null">
+        acct_name = #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseName != null">
+        merchandise_name = #{merchandiseName,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null">
+        star = #{star,jdbcType=BIT},
+      </if>
+      <if test="showStatus != null">
+        show_status = #{showStatus,jdbcType=BIT},
+      </if>
+      <if test="merchandiseAttribute != null">
+        merchandise_attribute = #{merchandiseAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="pics != null">
+        pics = #{pics,jdbcType=VARCHAR},
+      </if>
+      <if test="acctIcon != null">
+        acct_icon = #{acctIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="likeCount != null">
+        like_count = #{likeCount,jdbcType=INTEGER},
+      </if>
+      <if test="unlikeCount != null">
+        unlike_count = #{unlikeCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.doudouj.merchandise.model.MerchandiseComment">
+    update merchandise_comment
+    set merchandise_id = #{merchandiseId,jdbcType=BIGINT},
+      acct_name = #{acctName,jdbcType=VARCHAR},
+      merchandise_name = #{merchandiseName,jdbcType=VARCHAR},
+      star = #{star,jdbcType=BIT},
+      show_status = #{showStatus,jdbcType=BIT},
+      merchandise_attribute = #{merchandiseAttribute,jdbcType=VARCHAR},
+      pics = #{pics,jdbcType=VARCHAR},
+      acct_icon = #{acctIcon,jdbcType=VARCHAR},
+      like_count = #{likeCount,jdbcType=INTEGER},
+      unlike_count = #{unlikeCount,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.merchandise.model.MerchandiseComment">
+    update merchandise_comment
+    set merchandise_id = #{merchandiseId,jdbcType=BIGINT},
+      acct_name = #{acctName,jdbcType=VARCHAR},
+      merchandise_name = #{merchandiseName,jdbcType=VARCHAR},
+      star = #{star,jdbcType=BIT},
+      show_status = #{showStatus,jdbcType=BIT},
+      merchandise_attribute = #{merchandiseAttribute,jdbcType=VARCHAR},
+      pics = #{pics,jdbcType=VARCHAR},
+      acct_icon = #{acctIcon,jdbcType=VARCHAR},
+      like_count = #{likeCount,jdbcType=INTEGER},
+      unlike_count = #{unlikeCount,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

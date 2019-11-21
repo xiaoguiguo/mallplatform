@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.coupon.dao.HomeAdvertiseMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.coupon.model.HomeAdvertise">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="BIT" property="type" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="ad_status" jdbcType="BIT" property="adStatus" />
+    <result column="click_count" jdbcType="INTEGER" property="clickCount" />
+    <result column="order_count" jdbcType="INTEGER" property="orderCount" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, type, pic, start_time, end_time, ad_status, click_count, order_count, url, 
+    note, sort, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from home_advertise
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from home_advertise
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.coupon.model.HomeAdvertise">
+    insert into home_advertise (id, name, type, pic, 
+      start_time, end_time, ad_status, 
+      click_count, order_count, url, 
+      note, sort, create_time, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=BIT}, #{pic,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{adStatus,jdbcType=BIT}, 
+      #{clickCount,jdbcType=INTEGER}, #{orderCount,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.coupon.model.HomeAdvertise">
+    insert into home_advertise
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="adStatus != null">
+        ad_status,
+      </if>
+      <if test="clickCount != null">
+        click_count,
+      </if>
+      <if test="orderCount != null">
+        order_count,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adStatus != null">
+        #{adStatus,jdbcType=BIT},
+      </if>
+      <if test="clickCount != null">
+        #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderCount != null">
+        #{orderCount,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.coupon.model.HomeAdvertise">
+    update home_advertise
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adStatus != null">
+        ad_status = #{adStatus,jdbcType=BIT},
+      </if>
+      <if test="clickCount != null">
+        click_count = #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="orderCount != null">
+        order_count = #{orderCount,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.coupon.model.HomeAdvertise">
+    update home_advertise
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT},
+      pic = #{pic,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      ad_status = #{adStatus,jdbcType=BIT},
+      click_count = #{clickCount,jdbcType=INTEGER},
+      order_count = #{orderCount,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

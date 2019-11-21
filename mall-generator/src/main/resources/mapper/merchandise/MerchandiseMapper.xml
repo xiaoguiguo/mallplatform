@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.merchandise.dao.MerchandiseMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.merchandise.model.Merchandise">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="brand_id" jdbcType="BIGINT" property="brandId" />
+    <result column="merchandise_category_id" jdbcType="BIGINT" property="merchandiseCategoryId" />
+    <result column="merchandise_attribute_category_id" jdbcType="BIGINT" property="merchandiseAttributeCategoryId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="publish_status" jdbcType="BIT" property="publishStatus" />
+    <result column="new_status" jdbcType="BIT" property="newStatus" />
+    <result column="recommand_status" jdbcType="BIT" property="recommandStatus" />
+    <result column="verify_status" jdbcType="BIT" property="verifyStatus" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="sale" jdbcType="INTEGER" property="sale" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="promotion_price" jdbcType="DECIMAL" property="promotionPrice" />
+    <result column="gift_growth" jdbcType="INTEGER" property="giftGrowth" />
+    <result column="gift_point" jdbcType="INTEGER" property="giftPoint" />
+    <result column="use_point_limit" jdbcType="INTEGER" property="usePointLimit" />
+    <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
+    <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="low_stock" jdbcType="INTEGER" property="lowStock" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="service_ids" jdbcType="VARCHAR" property="serviceIds" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="album_pics" jdbcType="VARCHAR" property="albumPics" />
+    <result column="detail_title" jdbcType="VARCHAR" property="detailTitle" />
+    <result column="promotion_start_time" jdbcType="TIMESTAMP" property="promotionStartTime" />
+    <result column="promotion_end_time" jdbcType="TIMESTAMP" property="promotionEndTime" />
+    <result column="promotion_per_limit" jdbcType="INTEGER" property="promotionPerLimit" />
+    <result column="promotion_type" jdbcType="BIT" property="promotionType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.doudouj.merchandise.model.MerchandiseWithBLOBs">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="detail_desc" jdbcType="LONGVARCHAR" property="detailDesc" />
+    <result column="detail_html" jdbcType="LONGVARCHAR" property="detailHtml" />
+    <result column="detail_mobile_html" jdbcType="LONGVARCHAR" property="detailMobileHtml" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, brand_id, merchandise_category_id, merchandise_attribute_category_id, name, pic, 
+    publish_status, new_status, recommand_status, verify_status, sort, sale, price, promotion_price, 
+    gift_growth, gift_point, use_point_limit, sub_title, market_price, stock, low_stock, 
+    unit, service_ids, keywords, album_pics, detail_title, promotion_start_time, promotion_end_time, 
+    promotion_per_limit, promotion_type, create_time, modify_time
+  </sql>
+  <sql id="Blob_Column_List">
+    description, detail_desc, detail_html, detail_mobile_html
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from merchandise
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from merchandise
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.merchandise.model.MerchandiseWithBLOBs">
+    insert into merchandise (id, brand_id, merchandise_category_id, 
+      merchandise_attribute_category_id, name, pic, 
+      publish_status, new_status, recommand_status, 
+      verify_status, sort, sale, 
+      price, promotion_price, gift_growth, 
+      gift_point, use_point_limit, sub_title, 
+      market_price, stock, low_stock, 
+      unit, service_ids, keywords, 
+      album_pics, detail_title, promotion_start_time, 
+      promotion_end_time, promotion_per_limit, 
+      promotion_type, create_time, modify_time, 
+      description, detail_desc, detail_html, 
+      detail_mobile_html)
+    values (#{id,jdbcType=BIGINT}, #{brandId,jdbcType=BIGINT}, #{merchandiseCategoryId,jdbcType=BIGINT}, 
+      #{merchandiseAttributeCategoryId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
+      #{publishStatus,jdbcType=BIT}, #{newStatus,jdbcType=BIT}, #{recommandStatus,jdbcType=BIT}, 
+      #{verifyStatus,jdbcType=BIT}, #{sort,jdbcType=INTEGER}, #{sale,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{promotionPrice,jdbcType=DECIMAL}, #{giftGrowth,jdbcType=INTEGER}, 
+      #{giftPoint,jdbcType=INTEGER}, #{usePointLimit,jdbcType=INTEGER}, #{subTitle,jdbcType=VARCHAR}, 
+      #{marketPrice,jdbcType=DECIMAL}, #{stock,jdbcType=INTEGER}, #{lowStock,jdbcType=INTEGER}, 
+      #{unit,jdbcType=VARCHAR}, #{serviceIds,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
+      #{albumPics,jdbcType=VARCHAR}, #{detailTitle,jdbcType=VARCHAR}, #{promotionStartTime,jdbcType=TIMESTAMP}, 
+      #{promotionEndTime,jdbcType=TIMESTAMP}, #{promotionPerLimit,jdbcType=INTEGER}, 
+      #{promotionType,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=LONGVARCHAR}, #{detailDesc,jdbcType=LONGVARCHAR}, #{detailHtml,jdbcType=LONGVARCHAR}, 
+      #{detailMobileHtml,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.merchandise.model.MerchandiseWithBLOBs">
+    insert into merchandise
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="merchandiseCategoryId != null">
+        merchandise_category_id,
+      </if>
+      <if test="merchandiseAttributeCategoryId != null">
+        merchandise_attribute_category_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+      <if test="publishStatus != null">
+        publish_status,
+      </if>
+      <if test="newStatus != null">
+        new_status,
+      </if>
+      <if test="recommandStatus != null">
+        recommand_status,
+      </if>
+      <if test="verifyStatus != null">
+        verify_status,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="sale != null">
+        sale,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="promotionPrice != null">
+        promotion_price,
+      </if>
+      <if test="giftGrowth != null">
+        gift_growth,
+      </if>
+      <if test="giftPoint != null">
+        gift_point,
+      </if>
+      <if test="usePointLimit != null">
+        use_point_limit,
+      </if>
+      <if test="subTitle != null">
+        sub_title,
+      </if>
+      <if test="marketPrice != null">
+        market_price,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="lowStock != null">
+        low_stock,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="serviceIds != null">
+        service_ids,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="albumPics != null">
+        album_pics,
+      </if>
+      <if test="detailTitle != null">
+        detail_title,
+      </if>
+      <if test="promotionStartTime != null">
+        promotion_start_time,
+      </if>
+      <if test="promotionEndTime != null">
+        promotion_end_time,
+      </if>
+      <if test="promotionPerLimit != null">
+        promotion_per_limit,
+      </if>
+      <if test="promotionType != null">
+        promotion_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="detailDesc != null">
+        detail_desc,
+      </if>
+      <if test="detailHtml != null">
+        detail_html,
+      </if>
+      <if test="detailMobileHtml != null">
+        detail_mobile_html,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseCategoryId != null">
+        #{merchandiseCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseAttributeCategoryId != null">
+        #{merchandiseAttributeCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="publishStatus != null">
+        #{publishStatus,jdbcType=BIT},
+      </if>
+      <if test="newStatus != null">
+        #{newStatus,jdbcType=BIT},
+      </if>
+      <if test="recommandStatus != null">
+        #{recommandStatus,jdbcType=BIT},
+      </if>
+      <if test="verifyStatus != null">
+        #{verifyStatus,jdbcType=BIT},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null">
+        #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="promotionPrice != null">
+        #{promotionPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="giftGrowth != null">
+        #{giftGrowth,jdbcType=INTEGER},
+      </if>
+      <if test="giftPoint != null">
+        #{giftPoint,jdbcType=INTEGER},
+      </if>
+      <if test="usePointLimit != null">
+        #{usePointLimit,jdbcType=INTEGER},
+      </if>
+      <if test="subTitle != null">
+        #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null">
+        #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="lowStock != null">
+        #{lowStock,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceIds != null">
+        #{serviceIds,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="albumPics != null">
+        #{albumPics,jdbcType=VARCHAR},
+      </if>
+      <if test="detailTitle != null">
+        #{detailTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionStartTime != null">
+        #{promotionStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="promotionEndTime != null">
+        #{promotionEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="promotionPerLimit != null">
+        #{promotionPerLimit,jdbcType=INTEGER},
+      </if>
+      <if test="promotionType != null">
+        #{promotionType,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detailDesc != null">
+        #{detailDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detailHtml != null">
+        #{detailHtml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detailMobileHtml != null">
+        #{detailMobileHtml,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.merchandise.model.MerchandiseWithBLOBs">
+    update merchandise
+    <set>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseCategoryId != null">
+        merchandise_category_id = #{merchandiseCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseAttributeCategoryId != null">
+        merchandise_attribute_category_id = #{merchandiseAttributeCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="publishStatus != null">
+        publish_status = #{publishStatus,jdbcType=BIT},
+      </if>
+      <if test="newStatus != null">
+        new_status = #{newStatus,jdbcType=BIT},
+      </if>
+      <if test="recommandStatus != null">
+        recommand_status = #{recommandStatus,jdbcType=BIT},
+      </if>
+      <if test="verifyStatus != null">
+        verify_status = #{verifyStatus,jdbcType=BIT},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null">
+        sale = #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="promotionPrice != null">
+        promotion_price = #{promotionPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="giftGrowth != null">
+        gift_growth = #{giftGrowth,jdbcType=INTEGER},
+      </if>
+      <if test="giftPoint != null">
+        gift_point = #{giftPoint,jdbcType=INTEGER},
+      </if>
+      <if test="usePointLimit != null">
+        use_point_limit = #{usePointLimit,jdbcType=INTEGER},
+      </if>
+      <if test="subTitle != null">
+        sub_title = #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null">
+        market_price = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="lowStock != null">
+        low_stock = #{lowStock,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceIds != null">
+        service_ids = #{serviceIds,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="albumPics != null">
+        album_pics = #{albumPics,jdbcType=VARCHAR},
+      </if>
+      <if test="detailTitle != null">
+        detail_title = #{detailTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="promotionStartTime != null">
+        promotion_start_time = #{promotionStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="promotionEndTime != null">
+        promotion_end_time = #{promotionEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="promotionPerLimit != null">
+        promotion_per_limit = #{promotionPerLimit,jdbcType=INTEGER},
+      </if>
+      <if test="promotionType != null">
+        promotion_type = #{promotionType,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detailDesc != null">
+        detail_desc = #{detailDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detailHtml != null">
+        detail_html = #{detailHtml,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detailMobileHtml != null">
+        detail_mobile_html = #{detailMobileHtml,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.doudouj.merchandise.model.MerchandiseWithBLOBs">
+    update merchandise
+    set brand_id = #{brandId,jdbcType=BIGINT},
+      merchandise_category_id = #{merchandiseCategoryId,jdbcType=BIGINT},
+      merchandise_attribute_category_id = #{merchandiseAttributeCategoryId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      publish_status = #{publishStatus,jdbcType=BIT},
+      new_status = #{newStatus,jdbcType=BIT},
+      recommand_status = #{recommandStatus,jdbcType=BIT},
+      verify_status = #{verifyStatus,jdbcType=BIT},
+      sort = #{sort,jdbcType=INTEGER},
+      sale = #{sale,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      promotion_price = #{promotionPrice,jdbcType=DECIMAL},
+      gift_growth = #{giftGrowth,jdbcType=INTEGER},
+      gift_point = #{giftPoint,jdbcType=INTEGER},
+      use_point_limit = #{usePointLimit,jdbcType=INTEGER},
+      sub_title = #{subTitle,jdbcType=VARCHAR},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      stock = #{stock,jdbcType=INTEGER},
+      low_stock = #{lowStock,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=VARCHAR},
+      service_ids = #{serviceIds,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      album_pics = #{albumPics,jdbcType=VARCHAR},
+      detail_title = #{detailTitle,jdbcType=VARCHAR},
+      promotion_start_time = #{promotionStartTime,jdbcType=TIMESTAMP},
+      promotion_end_time = #{promotionEndTime,jdbcType=TIMESTAMP},
+      promotion_per_limit = #{promotionPerLimit,jdbcType=INTEGER},
+      promotion_type = #{promotionType,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR},
+      detail_desc = #{detailDesc,jdbcType=LONGVARCHAR},
+      detail_html = #{detailHtml,jdbcType=LONGVARCHAR},
+      detail_mobile_html = #{detailMobileHtml,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.merchandise.model.Merchandise">
+    update merchandise
+    set brand_id = #{brandId,jdbcType=BIGINT},
+      merchandise_category_id = #{merchandiseCategoryId,jdbcType=BIGINT},
+      merchandise_attribute_category_id = #{merchandiseAttributeCategoryId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      publish_status = #{publishStatus,jdbcType=BIT},
+      new_status = #{newStatus,jdbcType=BIT},
+      recommand_status = #{recommandStatus,jdbcType=BIT},
+      verify_status = #{verifyStatus,jdbcType=BIT},
+      sort = #{sort,jdbcType=INTEGER},
+      sale = #{sale,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      promotion_price = #{promotionPrice,jdbcType=DECIMAL},
+      gift_growth = #{giftGrowth,jdbcType=INTEGER},
+      gift_point = #{giftPoint,jdbcType=INTEGER},
+      use_point_limit = #{usePointLimit,jdbcType=INTEGER},
+      sub_title = #{subTitle,jdbcType=VARCHAR},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      stock = #{stock,jdbcType=INTEGER},
+      low_stock = #{lowStock,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=VARCHAR},
+      service_ids = #{serviceIds,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      album_pics = #{albumPics,jdbcType=VARCHAR},
+      detail_title = #{detailTitle,jdbcType=VARCHAR},
+      promotion_start_time = #{promotionStartTime,jdbcType=TIMESTAMP},
+      promotion_end_time = #{promotionEndTime,jdbcType=TIMESTAMP},
+      promotion_per_limit = #{promotionPerLimit,jdbcType=INTEGER},
+      promotion_type = #{promotionType,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

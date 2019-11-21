@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.coupon.dao.CouponMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.coupon.model.Coupon">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type" jdbcType="BIT" property="type" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="platform" jdbcType="BIT" property="platform" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="per_limit" jdbcType="INTEGER" property="perLimit" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="use_type" jdbcType="BIT" property="useType" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="publish_count" jdbcType="INTEGER" property="publishCount" />
+    <result column="use_count" jdbcType="INTEGER" property="useCount" />
+    <result column="receive_count" jdbcType="INTEGER" property="receiveCount" />
+    <result column="receive_time" jdbcType="TIMESTAMP" property="receiveTime" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, name, platform, count, amount, per_limit, start_time, end_time, use_type, 
+    note, publish_count, use_count, receive_count, receive_time, code, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from coupon
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.coupon.model.Coupon">
+    insert into coupon (id, type, name, platform, 
+      count, amount, per_limit, 
+      start_time, end_time, use_type, 
+      note, publish_count, use_count, 
+      receive_count, receive_time, code, 
+      create_time, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=BIT}, #{name,jdbcType=VARCHAR}, #{platform,jdbcType=BIT}, 
+      #{count,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{perLimit,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{useType,jdbcType=BIT}, 
+      #{note,jdbcType=VARCHAR}, #{publishCount,jdbcType=INTEGER}, #{useCount,jdbcType=INTEGER}, 
+      #{receiveCount,jdbcType=INTEGER}, #{receiveTime,jdbcType=TIMESTAMP}, #{code,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.coupon.model.Coupon">
+    insert into coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="perLimit != null">
+        per_limit,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="useType != null">
+        use_type,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="publishCount != null">
+        publish_count,
+      </if>
+      <if test="useCount != null">
+        use_count,
+      </if>
+      <if test="receiveCount != null">
+        receive_count,
+      </if>
+      <if test="receiveTime != null">
+        receive_time,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=BIT},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="perLimit != null">
+        #{perLimit,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useType != null">
+        #{useType,jdbcType=BIT},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="publishCount != null">
+        #{publishCount,jdbcType=INTEGER},
+      </if>
+      <if test="useCount != null">
+        #{useCount,jdbcType=INTEGER},
+      </if>
+      <if test="receiveCount != null">
+        #{receiveCount,jdbcType=INTEGER},
+      </if>
+      <if test="receiveTime != null">
+        #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.coupon.model.Coupon">
+    update coupon
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=BIT},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="perLimit != null">
+        per_limit = #{perLimit,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useType != null">
+        use_type = #{useType,jdbcType=BIT},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="publishCount != null">
+        publish_count = #{publishCount,jdbcType=INTEGER},
+      </if>
+      <if test="useCount != null">
+        use_count = #{useCount,jdbcType=INTEGER},
+      </if>
+      <if test="receiveCount != null">
+        receive_count = #{receiveCount,jdbcType=INTEGER},
+      </if>
+      <if test="receiveTime != null">
+        receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.coupon.model.Coupon">
+    update coupon
+    set type = #{type,jdbcType=BIT},
+      name = #{name,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=BIT},
+      count = #{count,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      per_limit = #{perLimit,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      use_type = #{useType,jdbcType=BIT},
+      note = #{note,jdbcType=VARCHAR},
+      publish_count = #{publishCount,jdbcType=INTEGER},
+      use_count = #{useCount,jdbcType=INTEGER},
+      receive_count = #{receiveCount,jdbcType=INTEGER},
+      receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      code = #{code,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

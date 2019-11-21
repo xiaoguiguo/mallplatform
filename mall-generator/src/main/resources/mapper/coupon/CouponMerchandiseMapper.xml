@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.coupon.dao.CouponMerchandiseMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.coupon.model.CouponMerchandise">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="coupon_id" jdbcType="BIGINT" property="couponId" />
+    <result column="merchandise_id" jdbcType="BIGINT" property="merchandiseId" />
+    <result column="merchandise_name" jdbcType="VARCHAR" property="merchandiseName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, coupon_id, merchandise_id, merchandise_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_merchandise
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from coupon_merchandise
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.coupon.model.CouponMerchandise">
+    insert into coupon_merchandise (id, coupon_id, merchandise_id, 
+      merchandise_name)
+    values (#{id,jdbcType=BIGINT}, #{couponId,jdbcType=BIGINT}, #{merchandiseId,jdbcType=BIGINT}, 
+      #{merchandiseName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.coupon.model.CouponMerchandise">
+    insert into coupon_merchandise
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="merchandiseId != null">
+        merchandise_id,
+      </if>
+      <if test="merchandiseName != null">
+        merchandise_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseId != null">
+        #{merchandiseId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseName != null">
+        #{merchandiseName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.coupon.model.CouponMerchandise">
+    update coupon_merchandise
+    <set>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseId != null">
+        merchandise_id = #{merchandiseId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseName != null">
+        merchandise_name = #{merchandiseName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.coupon.model.CouponMerchandise">
+    update coupon_merchandise
+    set coupon_id = #{couponId,jdbcType=BIGINT},
+      merchandise_id = #{merchandiseId,jdbcType=BIGINT},
+      merchandise_name = #{merchandiseName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

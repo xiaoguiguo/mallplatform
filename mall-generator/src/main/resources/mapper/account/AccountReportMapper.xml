@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.account.dao.AccountReportMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.account.model.AccountReport">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="report_type" jdbcType="BIT" property="reportType" />
+    <result column="acct_id" jdbcType="BIGINT" property="acctId" />
+    <result column="report_status" jdbcType="BIT" property="reportStatus" />
+    <result column="handle_status" jdbcType="BIT" property="handleStatus" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.doudouj.account.model.AccountReport">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, report_type, acct_id, report_status, handle_status, note, create_time, modify_time
+  </sql>
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from account_report
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from account_report
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.account.model.AccountReport">
+    insert into account_report (id, report_type, acct_id, 
+      report_status, handle_status, note, 
+      create_time, modify_time, description
+      )
+    values (#{id,jdbcType=BIGINT}, #{reportType,jdbcType=BIT}, #{acctId,jdbcType=BIGINT}, 
+      #{reportStatus,jdbcType=BIT}, #{handleStatus,jdbcType=BIT}, #{note,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.account.model.AccountReport">
+    insert into account_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="reportType != null">
+        report_type,
+      </if>
+      <if test="acctId != null">
+        acct_id,
+      </if>
+      <if test="reportStatus != null">
+        report_status,
+      </if>
+      <if test="handleStatus != null">
+        handle_status,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="reportType != null">
+        #{reportType,jdbcType=BIT},
+      </if>
+      <if test="acctId != null">
+        #{acctId,jdbcType=BIGINT},
+      </if>
+      <if test="reportStatus != null">
+        #{reportStatus,jdbcType=BIT},
+      </if>
+      <if test="handleStatus != null">
+        #{handleStatus,jdbcType=BIT},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.account.model.AccountReport">
+    update account_report
+    <set>
+      <if test="reportType != null">
+        report_type = #{reportType,jdbcType=BIT},
+      </if>
+      <if test="acctId != null">
+        acct_id = #{acctId,jdbcType=BIGINT},
+      </if>
+      <if test="reportStatus != null">
+        report_status = #{reportStatus,jdbcType=BIT},
+      </if>
+      <if test="handleStatus != null">
+        handle_status = #{handleStatus,jdbcType=BIT},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.doudouj.account.model.AccountReport">
+    update account_report
+    set report_type = #{reportType,jdbcType=BIT},
+      acct_id = #{acctId,jdbcType=BIGINT},
+      report_status = #{reportStatus,jdbcType=BIT},
+      handle_status = #{handleStatus,jdbcType=BIT},
+      note = #{note,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.account.model.AccountReport">
+    update account_report
+    set report_type = #{reportType,jdbcType=BIT},
+      acct_id = #{acctId,jdbcType=BIGINT},
+      report_status = #{reportStatus,jdbcType=BIT},
+      handle_status = #{handleStatus,jdbcType=BIT},
+      note = #{note,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.doudouj.account.model.AccountReport">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="report_type" jdbcType="BIT" property="reportType" />
+    <result column="acct_id" jdbcType="BIGINT" property="acctId" />
+    <result column="report_status" jdbcType="BIT" property="reportStatus" />
+    <result column="handle_status" jdbcType="BIT" property="handleStatus" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.doudouj.account.model.AccountReport">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, report_type, acct_id, report_status, handle_status, note, create_time, modify_time
+  </sql>
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from account_report
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from account_report
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.account.model.AccountReport">
+    insert into account_report (id, report_type, acct_id, 
+      report_status, handle_status, note, 
+      create_time, modify_time, description
+      )
+    values (#{id,jdbcType=BIGINT}, #{reportType,jdbcType=BIT}, #{acctId,jdbcType=BIGINT}, 
+      #{reportStatus,jdbcType=BIT}, #{handleStatus,jdbcType=BIT}, #{note,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.account.model.AccountReport">
+    insert into account_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="reportType != null">
+        report_type,
+      </if>
+      <if test="acctId != null">
+        acct_id,
+      </if>
+      <if test="reportStatus != null">
+        report_status,
+      </if>
+      <if test="handleStatus != null">
+        handle_status,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="reportType != null">
+        #{reportType,jdbcType=BIT},
+      </if>
+      <if test="acctId != null">
+        #{acctId,jdbcType=BIGINT},
+      </if>
+      <if test="reportStatus != null">
+        #{reportStatus,jdbcType=BIT},
+      </if>
+      <if test="handleStatus != null">
+        #{handleStatus,jdbcType=BIT},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.account.model.AccountReport">
+    update account_report
+    <set>
+      <if test="reportType != null">
+        report_type = #{reportType,jdbcType=BIT},
+      </if>
+      <if test="acctId != null">
+        acct_id = #{acctId,jdbcType=BIGINT},
+      </if>
+      <if test="reportStatus != null">
+        report_status = #{reportStatus,jdbcType=BIT},
+      </if>
+      <if test="handleStatus != null">
+        handle_status = #{handleStatus,jdbcType=BIT},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.doudouj.account.model.AccountReport">
+    update account_report
+    set report_type = #{reportType,jdbcType=BIT},
+      acct_id = #{acctId,jdbcType=BIGINT},
+      report_status = #{reportStatus,jdbcType=BIT},
+      handle_status = #{handleStatus,jdbcType=BIT},
+      note = #{note,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.account.model.AccountReport">
+    update account_report
+    set report_type = #{reportType,jdbcType=BIT},
+      acct_id = #{acctId,jdbcType=BIGINT},
+      report_status = #{reportStatus,jdbcType=BIT},
+      handle_status = #{handleStatus,jdbcType=BIT},
+      note = #{note,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

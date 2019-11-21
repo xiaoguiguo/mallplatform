@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.pay.dao.PayChannelTypeMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.pay.model.PayChannelType">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pct_name" jdbcType="VARCHAR" property="pctName" />
+    <result column="pct_short_name" jdbcType="VARCHAR" property="pctShortName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pct_name, pct_short_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_channel_type
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pay_channel_type
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.pay.model.PayChannelType">
+    insert into pay_channel_type (id, pct_name, pct_short_name
+      )
+    values (#{id,jdbcType=BIGINT}, #{pctName,jdbcType=VARCHAR}, #{pctShortName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.pay.model.PayChannelType">
+    insert into pay_channel_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pctName != null">
+        pct_name,
+      </if>
+      <if test="pctShortName != null">
+        pct_short_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="pctName != null">
+        #{pctName,jdbcType=VARCHAR},
+      </if>
+      <if test="pctShortName != null">
+        #{pctShortName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.pay.model.PayChannelType">
+    update pay_channel_type
+    <set>
+      <if test="pctName != null">
+        pct_name = #{pctName,jdbcType=VARCHAR},
+      </if>
+      <if test="pctShortName != null">
+        pct_short_name = #{pctShortName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.pay.model.PayChannelType">
+    update pay_channel_type
+    set pct_name = #{pctName,jdbcType=VARCHAR},
+      pct_short_name = #{pctShortName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

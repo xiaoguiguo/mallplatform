@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.merchandise.dao.MerchandiseAttributeCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.merchandise.model.MerchandiseAttributeCategory">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="attribute_count" jdbcType="INTEGER" property="attributeCount" />
+    <result column="param_count" jdbcType="INTEGER" property="paramCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, attribute_count, param_count
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from merchandise_attribute_category
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from merchandise_attribute_category
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.merchandise.model.MerchandiseAttributeCategory">
+    insert into merchandise_attribute_category (id, name, attribute_count, 
+      param_count)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{attributeCount,jdbcType=INTEGER}, 
+      #{paramCount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.merchandise.model.MerchandiseAttributeCategory">
+    insert into merchandise_attribute_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="attributeCount != null">
+        attribute_count,
+      </if>
+      <if test="paramCount != null">
+        param_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeCount != null">
+        #{attributeCount,jdbcType=INTEGER},
+      </if>
+      <if test="paramCount != null">
+        #{paramCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.merchandise.model.MerchandiseAttributeCategory">
+    update merchandise_attribute_category
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeCount != null">
+        attribute_count = #{attributeCount,jdbcType=INTEGER},
+      </if>
+      <if test="paramCount != null">
+        param_count = #{paramCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.merchandise.model.MerchandiseAttributeCategory">
+    update merchandise_attribute_category
+    set name = #{name,jdbcType=VARCHAR},
+      attribute_count = #{attributeCount,jdbcType=INTEGER},
+      param_count = #{paramCount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

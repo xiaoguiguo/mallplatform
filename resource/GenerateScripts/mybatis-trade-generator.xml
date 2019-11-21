@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator type="com.doudouj.utils.MyCommentGenerator">
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/mallpf_trade?serverTimezone=UTC" userId="root" password="12345678">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.doudouj.trade.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mapper.trade" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao类存放位置-->
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+        -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.doudouj.trade.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--生成对应表及类名-->
+        <!--<table tableName="stocktradeinfo" domainObjectName="StockTradeInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <table tableName="trade" domainObjectName="Trade" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <!--添加属性useActualColumnNames为true,那么生成的对象字段就跟表一样-->
+            <property name="tradeId" value="true"/>
+            <property name="acctId" value="true"/>
+            <property name="couponId" value="true"/>
+            <property name="amt" value="true"/>
+            <property name="discountAmt" value="true"/>
+            <property name="freightAmt" value="true"/>
+            <property name="promotionAmt" value="true"/>
+            <property name="pointAmt" value="true"/>
+            <property name="couponAmt" value="true"/>
+            <property name="payAmt" value="true"/>
+            <property name="payChannel" value="true"/>
+            <property name="sourceType" value="true"/>
+            <property name="tradeStatus" value="true"/>
+            <property name="deliveryCompany" value="true"/>
+            <property name="autoConfirmDay" value="true"/>
+            <property name="confirmStatus" value="true"/>
+            <property name="usePoint" value="true"/>
+            <property name="payTime" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+        <table tableName="trade_detail" domainObjectName="TradeDetail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="tradeId" value="true"/>
+            <property name="point" value="true"/>
+            <property name="growth" value="true"/>
+            <property name="invoiceType" value="true"/>
+            <property name="invoiceHeader" value="true"/>
+            <property name="invoiceContent" value="true"/>
+            <property name="invoiceReceivePhone" value="true"/>
+            <property name="invoiceReceiveEmail" value="true"/>
+            <property name="invoiceName" value="true"/>
+            <property name="invoicePhone" value="true"/>
+            <property name="invoicePostCode" value="true"/>
+            <property name="invoiceProvince" value="true"/>
+            <property name="invoiceCity" value="true"/>
+            <property name="invoiceRegion" value="true"/>
+            <property name="invoiceDetailAddress" value="true"/>
+            <property name="note" value="true"/>
+            <property name="deliveryTime" value="true"/>
+            <property name="receiveTime" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+        <table tableName="trade_item" domainObjectName="TradeItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="tradeId" value="true"/>
+            <property name="merchantId" value="true"/>
+            <property name="merchandiseId" value="true"/>
+            <property name="merchandisePic" value="true"/>
+            <property name="merchandiseName" value="true"/>
+            <property name="brand" value="true"/>
+            <property name="price" value="true"/>
+            <property name="quantity" value="true"/>
+            <property name="merchandiseCategoryId" value="true"/>
+            <property name="promotionAmt" value="true"/>
+            <property name="couponAmt" value="true"/>
+            <property name="pointAmt" value="true"/>
+            <property name="giftGrowth" value="true"/>
+            <property name="giftPoint" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+        <table tableName="trade_return_apply" domainObjectName="TradeReturnApply" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="tradeId" value="true"/>
+            <property name="acctId" value="true"/>
+            <property name="acctName" value="true"/>
+            <property name="merchandiseId" value="true"/>
+            <property name="merchantId" value="true"/>
+            <property name="returnAmt" value="true"/>
+            <property name="returnName" value="true"/>
+            <property name="returnPhone" value="true"/>
+            <property name="returnStatus" value="true"/>
+            <property name="handleTime" value="true"/>
+            <property name="merchandisePic" value="true"/>
+            <property name="merchandiseName" value="true"/>
+            <property name="brand" value="true"/>
+            <property name="merchandiseAttribute" value="true"/>
+            <property name="merchandiseCount" value="true"/>
+            <property name="merchandisePrice" value="true"/>
+            <property name="merchandisePayPrice" value="true"/>
+            <property name="reason" value="true"/>
+            <property name="proofPics" value="true"/>
+            <property name="handleNote" value="true"/>
+            <property name="handleMan" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

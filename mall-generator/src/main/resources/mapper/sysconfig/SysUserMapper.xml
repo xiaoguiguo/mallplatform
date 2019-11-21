@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.sysconfig.dao.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.sysconfig.model.SysUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="org_id" jdbcType="BIGINT" property="orgId" />
+    <result column="job_id" jdbcType="BIGINT" property="jobId" />
+    <result column="enabled" jdbcType="BIT" property="enabled" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, avatar, username, email, phone, org_id, job_id, enabled, password, create_time, 
+    modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.sysconfig.model.SysUser">
+    insert into sys_user (id, avatar, username, 
+      email, phone, org_id, 
+      job_id, enabled, password, 
+      create_time, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{avatar,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{orgId,jdbcType=BIGINT}, 
+      #{jobId,jdbcType=BIGINT}, #{enabled,jdbcType=BIT}, #{password,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.sysconfig.model.SysUser">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="jobId != null">
+        job_id,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=BIGINT},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=BIT},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.sysconfig.model.SysUser">
+    update sys_user
+    <set>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="jobId != null">
+        job_id = #{jobId,jdbcType=BIGINT},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=BIT},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.sysconfig.model.SysUser">
+    update sys_user
+    set avatar = #{avatar,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=BIGINT},
+      job_id = #{jobId,jdbcType=BIGINT},
+      enabled = #{enabled,jdbcType=BIT},
+      password = #{password,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.doudouj.sysconfig.model.SysUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="org_id" jdbcType="BIGINT" property="orgId" />
+    <result column="job_id" jdbcType="BIGINT" property="jobId" />
+    <result column="enabled" jdbcType="BIT" property="enabled" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, avatar, username, email, phone, org_id, job_id, enabled, password, create_time, 
+    modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.sysconfig.model.SysUser">
+    insert into sys_user (id, avatar, username, 
+      email, phone, org_id, 
+      job_id, enabled, password, 
+      create_time, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{avatar,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{orgId,jdbcType=BIGINT}, 
+      #{jobId,jdbcType=BIGINT}, #{enabled,jdbcType=BIT}, #{password,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.sysconfig.model.SysUser">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="jobId != null">
+        job_id,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=BIGINT},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=BIT},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.sysconfig.model.SysUser">
+    update sys_user
+    <set>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="jobId != null">
+        job_id = #{jobId,jdbcType=BIGINT},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=BIT},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.sysconfig.model.SysUser">
+    update sys_user
+    set avatar = #{avatar,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=BIGINT},
+      job_id = #{jobId,jdbcType=BIGINT},
+      enabled = #{enabled,jdbcType=BIT},
+      password = #{password,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

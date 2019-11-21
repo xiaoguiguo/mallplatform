@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.coupon.dao.HomeNewMerchandiseMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.coupon.model.HomeNewMerchandise">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="merchandise_id" jdbcType="BIGINT" property="merchandiseId" />
+    <result column="merchandise_name" jdbcType="VARCHAR" property="merchandiseName" />
+    <result column="recommend_status" jdbcType="BIT" property="recommendStatus" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, merchandise_id, merchandise_name, recommend_status, sort, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from home_new_merchandise
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from home_new_merchandise
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.coupon.model.HomeNewMerchandise">
+    insert into home_new_merchandise (id, merchandise_id, merchandise_name, 
+      recommend_status, sort, create_time, 
+      modify_time)
+    values (#{id,jdbcType=BIGINT}, #{merchandiseId,jdbcType=BIGINT}, #{merchandiseName,jdbcType=VARCHAR}, 
+      #{recommendStatus,jdbcType=BIT}, #{sort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.coupon.model.HomeNewMerchandise">
+    insert into home_new_merchandise
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="merchandiseId != null">
+        merchandise_id,
+      </if>
+      <if test="merchandiseName != null">
+        merchandise_name,
+      </if>
+      <if test="recommendStatus != null">
+        recommend_status,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseId != null">
+        #{merchandiseId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseName != null">
+        #{merchandiseName,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendStatus != null">
+        #{recommendStatus,jdbcType=BIT},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.coupon.model.HomeNewMerchandise">
+    update home_new_merchandise
+    <set>
+      <if test="merchandiseId != null">
+        merchandise_id = #{merchandiseId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseName != null">
+        merchandise_name = #{merchandiseName,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendStatus != null">
+        recommend_status = #{recommendStatus,jdbcType=BIT},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.coupon.model.HomeNewMerchandise">
+    update home_new_merchandise
+    set merchandise_id = #{merchandiseId,jdbcType=BIGINT},
+      merchandise_name = #{merchandiseName,jdbcType=VARCHAR},
+      recommend_status = #{recommendStatus,jdbcType=BIT},
+      sort = #{sort,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

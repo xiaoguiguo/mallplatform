@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.merchandise.dao.BrandMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.merchandise.model.Brand">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="merchandise_count" jdbcType="INTEGER" property="merchandiseCount" />
+    <result column="merchandise_comment_count" jdbcType="INTEGER" property="merchandiseCommentCount" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="big_pic" jdbcType="VARCHAR" property="bigPic" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.doudouj.merchandise.model.Brand">
+    <result column="brand_story" jdbcType="LONGVARCHAR" property="brandStory" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, sort, merchandise_count, merchandise_comment_count, logo, big_pic, create_time, 
+    modify_time
+  </sql>
+  <sql id="Blob_Column_List">
+    brand_story
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from brand
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from brand
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.merchandise.model.Brand">
+    insert into brand (id, name, sort, 
+      merchandise_count, merchandise_comment_count, 
+      logo, big_pic, create_time, 
+      modify_time, brand_story)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{merchandiseCount,jdbcType=INTEGER}, #{merchandiseCommentCount,jdbcType=INTEGER}, 
+      #{logo,jdbcType=VARCHAR}, #{bigPic,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{brandStory,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.merchandise.model.Brand">
+    insert into brand
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="merchandiseCount != null">
+        merchandise_count,
+      </if>
+      <if test="merchandiseCommentCount != null">
+        merchandise_comment_count,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+      <if test="bigPic != null">
+        big_pic,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="brandStory != null">
+        brand_story,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="merchandiseCount != null">
+        #{merchandiseCount,jdbcType=INTEGER},
+      </if>
+      <if test="merchandiseCommentCount != null">
+        #{merchandiseCommentCount,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="bigPic != null">
+        #{bigPic,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="brandStory != null">
+        #{brandStory,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.merchandise.model.Brand">
+    update brand
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="merchandiseCount != null">
+        merchandise_count = #{merchandiseCount,jdbcType=INTEGER},
+      </if>
+      <if test="merchandiseCommentCount != null">
+        merchandise_comment_count = #{merchandiseCommentCount,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="bigPic != null">
+        big_pic = #{bigPic,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="brandStory != null">
+        brand_story = #{brandStory,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.doudouj.merchandise.model.Brand">
+    update brand
+    set name = #{name,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      merchandise_count = #{merchandiseCount,jdbcType=INTEGER},
+      merchandise_comment_count = #{merchandiseCommentCount,jdbcType=INTEGER},
+      logo = #{logo,jdbcType=VARCHAR},
+      big_pic = #{bigPic,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      brand_story = #{brandStory,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.merchandise.model.Brand">
+    update brand
+    set name = #{name,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      merchandise_count = #{merchandiseCount,jdbcType=INTEGER},
+      merchandise_comment_count = #{merchandiseCommentCount,jdbcType=INTEGER},
+      logo = #{logo,jdbcType=VARCHAR},
+      big_pic = #{bigPic,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

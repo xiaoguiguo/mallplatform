@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.sysconfig.dao.SysMenuMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.sysconfig.model.SysMenu">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="component" jdbcType="VARCHAR" property="component" />
+    <result column="pid" jdbcType="BIGINT" property="pid" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, component, pid, sort, path
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_menu
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.sysconfig.model.SysMenu">
+    insert into sys_menu (id, name, component, 
+      pid, sort, path)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{component,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=BIGINT}, #{sort,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.sysconfig.model.SysMenu">
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="component != null">
+        component,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null">
+        #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.sysconfig.model.SysMenu">
+    update sys_menu
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null">
+        component = #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.sysconfig.model.SysMenu">
+    update sys_menu
+    set name = #{name,jdbcType=VARCHAR},
+      component = #{component,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=BIGINT},
+      sort = #{sort,jdbcType=INTEGER},
+      path = #{path,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.doudouj.sysconfig.model.SysMenu">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="component" jdbcType="VARCHAR" property="component" />
+    <result column="pid" jdbcType="BIGINT" property="pid" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, component, pid, sort, path
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_menu
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.sysconfig.model.SysMenu">
+    insert into sys_menu (id, name, component, 
+      pid, sort, path)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{component,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=BIGINT}, #{sort,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.sysconfig.model.SysMenu">
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="component != null">
+        component,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null">
+        #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.sysconfig.model.SysMenu">
+    update sys_menu
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null">
+        component = #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.sysconfig.model.SysMenu">
+    update sys_menu
+    set name = #{name,jdbcType=VARCHAR},
+      component = #{component,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=BIGINT},
+      sort = #{sort,jdbcType=INTEGER},
+      path = #{path,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

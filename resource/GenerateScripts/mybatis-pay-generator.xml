@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator type="com.doudouj.utils.MyCommentGenerator">
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/mallpf_pay?serverTimezone=UTC" userId="root" password="12345678">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.doudouj.pay.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mapper.pay" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao类存放位置-->
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+        -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.doudouj.pay.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--生成对应表及类名-->
+        <!--<table tableName="stocktradeinfo" domainObjectName="StockTradeInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <table tableName="pay_channel" domainObjectName="PayChannel" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <!--添加属性useActualColumnNames为true,那么生成的对象字段就跟表一样-->
+            <property name="id" value="true"/>
+            <property name="payChannelName" value="true"/>
+            <property name="payChannelShortName" value="true"/>
+        </table>
+        <table tableName="pay_channel_config" domainObjectName="Merchandise" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="pccName" value="true"/>
+            <property name="pccShortName" value="true"/>
+            <property name="pctId" value="true"/>
+            <property name="configParams" value="true"/>
+            <property name="pccStatus" value="true"/>
+        </table>
+        <table tableName="pay_channel_type" domainObjectName="PayChannelType" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="pctName" value="true"/>
+            <property name="pctShortName" value="true"/>
+        </table>
+        <table tableName="pay_flow" domainObjectName="PayFlow" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="payId" value="true"/>
+            <property name="tradeId" value="true"/>
+            <property name="tradeAmt" value="true"/>
+            <property name="payAmt" value="true"/>
+            <property name="payType" value="true"/>
+            <property name="payStatus" value="true"/>
+            <property name="acctId" value="true"/>
+            <property name="merchantId" value="true"/>
+            <property name="payChannelId" value="true"/>
+            <property name="payTime" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

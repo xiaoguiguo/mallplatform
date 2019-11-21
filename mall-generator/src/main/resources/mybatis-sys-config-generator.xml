@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/mallpf_sys_config?serverTimezone=UTC" userId="root" password="12345678">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.doudouj.sysconfig.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mapper.sysconfig" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao类存放位置-->
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+        -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.doudouj.sysconfig.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--生成对应表及类名-->
+        <!--<table tableName="stocktradeinfo" domainObjectName="StockTradeInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <table tableName="sys_data_dict" domainObjectName="SysDataDict" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <!--添加属性useActualColumnNames为true,那么生成的对象字段就跟表一样-->
+            <property name="id" value="true"/>
+            <property name="dictId" value="true"/>
+            <property name="name" value="true"/>
+            <property name="value" value="true"/>
+            <property name="label" value="true"/>
+            <property name="sort" value="true"/>
+        </table>
+        <table tableName="sys_job" domainObjectName="SysJob" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="name" value="true"/>
+            <property name="sort" value="true"/>
+            <property name="orgId" value="true"/>
+            <property name="remark" value="true"/>
+        </table>
+        <table tableName="sys_menu" domainObjectName="SysMenu" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="name" value="true"/>
+            <property name="component" value="true"/>
+            <property name="pid" value="true"/>
+            <property name="sort" value="true"/>
+            <property name="path" value="true"/>
+        </table>
+        <table tableName="sys_organization" domainObjectName="PayFlow" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="name" value="true"/>
+            <property name="pid" value="true"/>
+            <property name="remark" value="true"/>
+        </table>
+        <table tableName="sys_role" domainObjectName="SysRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="roleName" value="true"/>
+            <property name="remark" value="true"/>
+        </table>
+        <table tableName="sys_role_menu" domainObjectName="SysRoleMenu" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="roleId" value="true"/>
+            <property name="menuId" value="true"/>
+        </table>
+        <table tableName="sys_role_organization" domainObjectName="SysRoleMenu" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="roleId" value="true"/>
+            <property name="orgId" value="true"/>
+        </table>
+        <table tableName="sys_user" domainObjectName="SysUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="avatar" value="true"/>
+            <property name="username" value="true"/>
+            <property name="email" value="true"/>
+            <property name="phone" value="true"/>
+            <property name="orgId" value="true"/>
+            <property name="jobId" value="true"/>
+            <property name="enabled" value="true"/>
+            <property name="password" value="true"/>
+            <property name="createTime" value="true"/>
+            <property name="modifyTime" value="true"/>
+        </table>
+        <table tableName="sys_user_role" domainObjectName="SysUserRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="id" value="true"/>
+            <property name="userId" value="true"/>
+            <property name="roleId" value="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

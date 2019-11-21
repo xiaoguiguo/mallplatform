@@ -21,6 +21,7 @@
         <module>mall-merchandise</module>
         <module>mall-coupon</module>
         <module>mall-crontab</module>
+        <module>mall-generator</module>
     </modules>
 
     <parent>
@@ -38,6 +39,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.16</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -62,6 +73,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
         </dependency>
     </dependencies>
 

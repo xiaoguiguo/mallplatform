@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.trade.dao.TradeReturnApplyMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.trade.model.TradeReturnApply">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="trade_id" jdbcType="BIGINT" property="tradeId" />
+    <result column="acct_id" jdbcType="BIGINT" property="acctId" />
+    <result column="acct_name" jdbcType="VARCHAR" property="acctName" />
+    <result column="merchandise_id" jdbcType="BIGINT" property="merchandiseId" />
+    <result column="merchant_id" jdbcType="BIGINT" property="merchantId" />
+    <result column="return_amt" jdbcType="DECIMAL" property="returnAmt" />
+    <result column="return_name" jdbcType="VARCHAR" property="returnName" />
+    <result column="return_phone" jdbcType="VARCHAR" property="returnPhone" />
+    <result column="return_status" jdbcType="BIT" property="returnStatus" />
+    <result column="handle_time" jdbcType="TIMESTAMP" property="handleTime" />
+    <result column="merchandise_pic" jdbcType="VARCHAR" property="merchandisePic" />
+    <result column="merchandise_name" jdbcType="VARCHAR" property="merchandiseName" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="merchandise_attribute" jdbcType="VARCHAR" property="merchandiseAttribute" />
+    <result column="merchandise_count" jdbcType="INTEGER" property="merchandiseCount" />
+    <result column="merchandise_price" jdbcType="DECIMAL" property="merchandisePrice" />
+    <result column="merchandise_pay_price" jdbcType="DECIMAL" property="merchandisePayPrice" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="proof_pics" jdbcType="VARCHAR" property="proofPics" />
+    <result column="handle_note" jdbcType="VARCHAR" property="handleNote" />
+    <result column="handle_man" jdbcType="VARCHAR" property="handleMan" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, trade_id, acct_id, acct_name, merchandise_id, merchant_id, return_amt, return_name, 
+    return_phone, return_status, handle_time, merchandise_pic, merchandise_name, brand, 
+    merchandise_attribute, merchandise_count, merchandise_price, merchandise_pay_price, 
+    reason, proof_pics, handle_note, handle_man, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trade_return_apply
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from trade_return_apply
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.trade.model.TradeReturnApply">
+    insert into trade_return_apply (id, trade_id, acct_id, 
+      acct_name, merchandise_id, merchant_id, 
+      return_amt, return_name, return_phone, 
+      return_status, handle_time, merchandise_pic, 
+      merchandise_name, brand, merchandise_attribute, 
+      merchandise_count, merchandise_price, merchandise_pay_price, 
+      reason, proof_pics, handle_note, 
+      handle_man, create_time, modify_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{tradeId,jdbcType=BIGINT}, #{acctId,jdbcType=BIGINT}, 
+      #{acctName,jdbcType=VARCHAR}, #{merchandiseId,jdbcType=BIGINT}, #{merchantId,jdbcType=BIGINT}, 
+      #{returnAmt,jdbcType=DECIMAL}, #{returnName,jdbcType=VARCHAR}, #{returnPhone,jdbcType=VARCHAR}, 
+      #{returnStatus,jdbcType=BIT}, #{handleTime,jdbcType=TIMESTAMP}, #{merchandisePic,jdbcType=VARCHAR}, 
+      #{merchandiseName,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{merchandiseAttribute,jdbcType=VARCHAR}, 
+      #{merchandiseCount,jdbcType=INTEGER}, #{merchandisePrice,jdbcType=DECIMAL}, #{merchandisePayPrice,jdbcType=DECIMAL}, 
+      #{reason,jdbcType=VARCHAR}, #{proofPics,jdbcType=VARCHAR}, #{handleNote,jdbcType=VARCHAR}, 
+      #{handleMan,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.trade.model.TradeReturnApply">
+    insert into trade_return_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tradeId != null">
+        trade_id,
+      </if>
+      <if test="acctId != null">
+        acct_id,
+      </if>
+      <if test="acctName != null">
+        acct_name,
+      </if>
+      <if test="merchandiseId != null">
+        merchandise_id,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="returnAmt != null">
+        return_amt,
+      </if>
+      <if test="returnName != null">
+        return_name,
+      </if>
+      <if test="returnPhone != null">
+        return_phone,
+      </if>
+      <if test="returnStatus != null">
+        return_status,
+      </if>
+      <if test="handleTime != null">
+        handle_time,
+      </if>
+      <if test="merchandisePic != null">
+        merchandise_pic,
+      </if>
+      <if test="merchandiseName != null">
+        merchandise_name,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="merchandiseAttribute != null">
+        merchandise_attribute,
+      </if>
+      <if test="merchandiseCount != null">
+        merchandise_count,
+      </if>
+      <if test="merchandisePrice != null">
+        merchandise_price,
+      </if>
+      <if test="merchandisePayPrice != null">
+        merchandise_pay_price,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="proofPics != null">
+        proof_pics,
+      </if>
+      <if test="handleNote != null">
+        handle_note,
+      </if>
+      <if test="handleMan != null">
+        handle_man,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="acctId != null">
+        #{acctId,jdbcType=BIGINT},
+      </if>
+      <if test="acctName != null">
+        #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseId != null">
+        #{merchandiseId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="returnAmt != null">
+        #{returnAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="returnName != null">
+        #{returnName,jdbcType=VARCHAR},
+      </if>
+      <if test="returnPhone != null">
+        #{returnPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="returnStatus != null">
+        #{returnStatus,jdbcType=BIT},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchandisePic != null">
+        #{merchandisePic,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseName != null">
+        #{merchandiseName,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseAttribute != null">
+        #{merchandiseAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseCount != null">
+        #{merchandiseCount,jdbcType=INTEGER},
+      </if>
+      <if test="merchandisePrice != null">
+        #{merchandisePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="merchandisePayPrice != null">
+        #{merchandisePayPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="proofPics != null">
+        #{proofPics,jdbcType=VARCHAR},
+      </if>
+      <if test="handleNote != null">
+        #{handleNote,jdbcType=VARCHAR},
+      </if>
+      <if test="handleMan != null">
+        #{handleMan,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.trade.model.TradeReturnApply">
+    update trade_return_apply
+    <set>
+      <if test="tradeId != null">
+        trade_id = #{tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="acctId != null">
+        acct_id = #{acctId,jdbcType=BIGINT},
+      </if>
+      <if test="acctName != null">
+        acct_name = #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseId != null">
+        merchandise_id = #{merchandiseId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="returnAmt != null">
+        return_amt = #{returnAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="returnName != null">
+        return_name = #{returnName,jdbcType=VARCHAR},
+      </if>
+      <if test="returnPhone != null">
+        return_phone = #{returnPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="returnStatus != null">
+        return_status = #{returnStatus,jdbcType=BIT},
+      </if>
+      <if test="handleTime != null">
+        handle_time = #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merchandisePic != null">
+        merchandise_pic = #{merchandisePic,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseName != null">
+        merchandise_name = #{merchandiseName,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseAttribute != null">
+        merchandise_attribute = #{merchandiseAttribute,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseCount != null">
+        merchandise_count = #{merchandiseCount,jdbcType=INTEGER},
+      </if>
+      <if test="merchandisePrice != null">
+        merchandise_price = #{merchandisePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="merchandisePayPrice != null">
+        merchandise_pay_price = #{merchandisePayPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="proofPics != null">
+        proof_pics = #{proofPics,jdbcType=VARCHAR},
+      </if>
+      <if test="handleNote != null">
+        handle_note = #{handleNote,jdbcType=VARCHAR},
+      </if>
+      <if test="handleMan != null">
+        handle_man = #{handleMan,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.trade.model.TradeReturnApply">
+    update trade_return_apply
+    set trade_id = #{tradeId,jdbcType=BIGINT},
+      acct_id = #{acctId,jdbcType=BIGINT},
+      acct_name = #{acctName,jdbcType=VARCHAR},
+      merchandise_id = #{merchandiseId,jdbcType=BIGINT},
+      merchant_id = #{merchantId,jdbcType=BIGINT},
+      return_amt = #{returnAmt,jdbcType=DECIMAL},
+      return_name = #{returnName,jdbcType=VARCHAR},
+      return_phone = #{returnPhone,jdbcType=VARCHAR},
+      return_status = #{returnStatus,jdbcType=BIT},
+      handle_time = #{handleTime,jdbcType=TIMESTAMP},
+      merchandise_pic = #{merchandisePic,jdbcType=VARCHAR},
+      merchandise_name = #{merchandiseName,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      merchandise_attribute = #{merchandiseAttribute,jdbcType=VARCHAR},
+      merchandise_count = #{merchandiseCount,jdbcType=INTEGER},
+      merchandise_price = #{merchandisePrice,jdbcType=DECIMAL},
+      merchandise_pay_price = #{merchandisePayPrice,jdbcType=DECIMAL},
+      reason = #{reason,jdbcType=VARCHAR},
+      proof_pics = #{proofPics,jdbcType=VARCHAR},
+      handle_note = #{handleNote,jdbcType=VARCHAR},
+      handle_man = #{handleMan,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
