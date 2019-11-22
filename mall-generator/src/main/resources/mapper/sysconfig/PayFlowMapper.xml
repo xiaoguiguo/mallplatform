@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.doudouj.sysconfig.dao.PayFlowMapper">
-  <resultMap id="BaseResultMap" type="com.doudouj.sysconfig.model.PayFlow">
+<mapper namespace="com.doudouj.dao.sysconfig.PayFlowMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.dto.sysconfig.PayFlow">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="pid" jdbcType="BIGINT" property="pid" />
@@ -20,13 +20,13 @@
     delete from sys_organization
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.doudouj.sysconfig.model.PayFlow">
+  <insert id="insert" parameterType="com.doudouj.dto.sysconfig.PayFlow">
     insert into sys_organization (id, name, pid, 
       remark)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=BIGINT}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.doudouj.sysconfig.model.PayFlow">
+  <insert id="insertSelective" parameterType="com.doudouj.dto.sysconfig.PayFlow">
     insert into sys_organization
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.sysconfig.model.PayFlow">
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.dto.sysconfig.PayFlow">
     update sys_organization
     <set>
       <if test="name != null">
@@ -72,85 +72,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.doudouj.sysconfig.model.PayFlow">
-    update sys_organization
-    set name = #{name,jdbcType=VARCHAR},
-      pid = #{pid,jdbcType=BIGINT},
-      remark = #{remark,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <resultMap id="BaseResultMap" type="com.doudouj.sysconfig.model.PayFlow">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="pid" jdbcType="BIGINT" property="pid" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, name, pid, remark
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sys_organization
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from sys_organization
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.doudouj.sysconfig.model.PayFlow">
-    insert into sys_organization (id, name, pid, 
-      remark)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=BIGINT}, 
-      #{remark,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.doudouj.sysconfig.model.PayFlow">
-    insert into sys_organization
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="pid != null">
-        pid,
-      </if>
-      <if test="remark != null">
-        remark,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="pid != null">
-        #{pid,jdbcType=BIGINT},
-      </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.sysconfig.model.PayFlow">
-    update sys_organization
-    <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="pid != null">
-        pid = #{pid,jdbcType=BIGINT},
-      </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.doudouj.sysconfig.model.PayFlow">
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.dto.sysconfig.PayFlow">
     update sys_organization
     set name = #{name,jdbcType=VARCHAR},
       pid = #{pid,jdbcType=BIGINT},

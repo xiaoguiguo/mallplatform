@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.doudouj.pay.dao.MerchandiseMapper">
-  <resultMap id="BaseResultMap" type="com.doudouj.pay.model.Merchandise">
+<mapper namespace="com.doudouj.dao.pay.MerchandiseMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.dto.pay.Merchandise">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="pcc_name" jdbcType="VARCHAR" property="pccName" />
     <result column="pcc_short_name" jdbcType="VARCHAR" property="pccShortName" />
@@ -22,7 +22,7 @@
     delete from pay_channel_config
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.doudouj.pay.model.Merchandise">
+  <insert id="insert" parameterType="com.doudouj.dto.pay.Merchandise">
     insert into pay_channel_config (id, pcc_name, pcc_short_name, 
       pct_id, config_params, pcc_status
       )
@@ -30,7 +30,7 @@
       #{pctId,jdbcType=BIGINT}, #{configParams,jdbcType=VARCHAR}, #{pccStatus,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.doudouj.pay.model.Merchandise">
+  <insert id="insertSelective" parameterType="com.doudouj.dto.pay.Merchandise">
     insert into pay_channel_config
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -73,7 +73,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.pay.model.Merchandise">
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.dto.pay.Merchandise">
     update pay_channel_config
     <set>
       <if test="pccName != null">
@@ -94,7 +94,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.doudouj.pay.model.Merchandise">
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.dto.pay.Merchandise">
     update pay_channel_config
     set pcc_name = #{pccName,jdbcType=VARCHAR},
       pcc_short_name = #{pccShortName,jdbcType=VARCHAR},

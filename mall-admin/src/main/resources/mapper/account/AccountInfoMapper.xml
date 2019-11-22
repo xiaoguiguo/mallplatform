@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.dao.accounts.AccountInfoMapper">
+
+  <resultMap id="BaseResultMap" type="com.doudouj.dto.accounts.AccountInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="tripart_acct_id" jdbcType="BIGINT" property="tripartAcctId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="acct_type" jdbcType="TINYINT" property="acctType" />
+    <result column="acct_status" jdbcType="TINYINT" property="acctStatus" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="growth" jdbcType="INTEGER" property="growth" />
+    <result column="point" jdbcType="INTEGER" property="point" />
+    <result column="level" jdbcType="TINYINT" property="level" />
+    <result column="vip_status" jdbcType="BIT" property="vipStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, tripart_acct_id, name, acct_type, acct_status, balance, growth, point, level, 
+    vip_status, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from account_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from account_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.dto.accounts.AccountInfo">
+    insert into account_info (id, tripart_acct_id, name, 
+      acct_type, acct_status, balance, 
+      growth, point, level, 
+      vip_status, create_time, modify_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{tripartAcctId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{acctType,jdbcType=TINYINT}, #{acctStatus,jdbcType=TINYINT}, #{balance,jdbcType=DECIMAL}, 
+      #{growth,jdbcType=INTEGER}, #{point,jdbcType=INTEGER}, #{level,jdbcType=TINYINT}, 
+      #{vipStatus,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.dto.accounts.AccountInfo">
+    insert into account_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tripartAcctId != null">
+        tripart_acct_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="acctType != null">
+        acct_type,
+      </if>
+      <if test="acctStatus != null">
+        acct_status,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="growth != null">
+        growth,
+      </if>
+      <if test="point != null">
+        point,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="vipStatus != null">
+        vip_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tripartAcctId != null">
+        #{tripartAcctId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType != null">
+        #{acctType,jdbcType=TINYINT},
+      </if>
+      <if test="acctStatus != null">
+        #{acctStatus,jdbcType=TINYINT},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="growth != null">
+        #{growth,jdbcType=INTEGER},
+      </if>
+      <if test="point != null">
+        #{point,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="vipStatus != null">
+        #{vipStatus,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.dto.accounts.AccountInfo">
+    update account_info
+    <set>
+      <if test="tripartAcctId != null">
+        tripart_acct_id = #{tripartAcctId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType != null">
+        acct_type = #{acctType,jdbcType=TINYINT},
+      </if>
+      <if test="acctStatus != null">
+        acct_status = #{acctStatus,jdbcType=TINYINT},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="growth != null">
+        growth = #{growth,jdbcType=INTEGER},
+      </if>
+      <if test="point != null">
+        point = #{point,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="vipStatus != null">
+        vip_status = #{vipStatus,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.dto.accounts.AccountInfo">
+    update account_info
+    set tripart_acct_id = #{tripartAcctId,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
+      acct_type = #{acctType,jdbcType=TINYINT},
+      acct_status = #{acctStatus,jdbcType=TINYINT},
+      balance = #{balance,jdbcType=DECIMAL},
+      growth = #{growth,jdbcType=INTEGER},
+      point = #{point,jdbcType=INTEGER},
+      level = #{level,jdbcType=TINYINT},
+      vip_status = #{vipStatus,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="listAll" resultMap="BaseResultMap">
+    select * from account_info
+  </select>
+</mapper>
