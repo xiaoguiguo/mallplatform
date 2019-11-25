@@ -115,7 +115,7 @@ CREATE TABLE `sys_data_dict` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统数据字典表';
 
--- 账户系统库mall-account
+-- 账户系统库mall-accounts
 use mallpf_accounts;
 DROP TABLE if exists `account_info`;
 CREATE TABLE `account_info` (

@@ -3,6 +3,7 @@ package com.doudouj.serviceImpl.accounts;
 import com.doudouj.dao.accounts.AccountInfoMapper;
 import com.doudouj.dto.accounts.AccountInfo;
 import com.doudouj.service.accounts.AccountInfoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * @Description: 账户信息服务实现类
  */
 @Service
+@Slf4j
 public class AccountInfoServiceImpl implements AccountInfoService {
 
     @Autowired
@@ -29,4 +31,5 @@ public class AccountInfoServiceImpl implements AccountInfoService {
     public AccountInfo findById(long id) {
         return accountInfoMapper.selectByPrimaryKey(id);
     }
+
 }

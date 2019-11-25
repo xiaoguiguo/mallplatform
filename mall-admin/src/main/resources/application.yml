@@ -1,10 +1,56 @@
 #配置数据库信息
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/mallpf_sys_config?serverTimezone=UTC
+#    username: root
+#    password: 12345678
+
+#多数据源配置
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/mallpf_accounts?serverTimezone=UTC
-    username: root
-    password: 12345678
+    accounts:
+      url: jdbc:mysql://127.0.0.1:3306/mallpf_accounts?serverTimezone=UTC
+      username: root
+      password: 12345678
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+    sysconfig:
+      url: jdbc:mysql://127.0.0.1:3306/mallpf_sys_config?serverTimezone=UTC
+      username: root
+      password: 12345678
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+    check:
+      url: jdbc:mysql://127.0.0.1:3306/mallpf_check?serverTimezone=UTC
+      username: root
+      password: 12345678
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+    coupon:
+      url: jdbc:mysql://127.0.0.1:3306/mallpf_coupon?serverTimezone=UTC
+      username: root
+      password: 12345678
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+    merchandise:
+      url: jdbc:mysql://127.0.0.1:3306/mallpf_merchandise?serverTimezone=UTC
+      username: root
+      password: 12345678
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+    pay:
+      url: jdbc:mysql://127.0.0.1:3306/mallpf_pay?serverTimezone=UTC
+      username: root
+      password: 12345678
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+    trade:
+      url: jdbc:mysql://127.0.0.1:3306/mallpf_trade?serverTimezone=UTC
+      username: root
+      password: 12345678
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
 
 # mybatis配置信息
 mybatis:

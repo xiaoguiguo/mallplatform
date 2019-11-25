@@ -2,7 +2,9 @@ package com.doudouj;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
  * @ClassName: MallAdminApp
@@ -10,8 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Datetime: 2019/11/22-14:04
  * @Description: 后管服务
  */
-@SpringBootApplication
-@MapperScan("com.doudouj.dao.accounts")
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class MallAdminApp {
 
     public static void main(String[] args) {
