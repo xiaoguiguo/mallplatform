@@ -16,3 +16,5 @@
     因为后管需要查看所有数据库中的数据（7个），所以使用多数据源，使用druid连接池，数据库的配置信息在admin项目下的application.yml配置文件中。
     关闭数据源的自动加载，在@SpringBootApplication后面使用exclude
     通过自定义创建数据源来创建各个数据库连接，对应的配置类在config目录下
+    @ConfigurationProperties ，推荐使用这个注解配置多数据源信息
+    添加测试用例

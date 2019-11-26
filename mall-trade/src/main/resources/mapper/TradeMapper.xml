@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.dao.TradeMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.dto.Trade">
+    <id column="trade_id" jdbcType="BIGINT" property="tradeId" />
+    <result column="acct_id" jdbcType="BIGINT" property="acctId" />
+    <result column="coupon_id" jdbcType="BIGINT" property="couponId" />
+    <result column="amt" jdbcType="DECIMAL" property="amt" />
+    <result column="discount_amt" jdbcType="DECIMAL" property="discountAmt" />
+    <result column="freight_amt" jdbcType="DECIMAL" property="freightAmt" />
+    <result column="promotion_amt" jdbcType="DECIMAL" property="promotionAmt" />
+    <result column="point_amt" jdbcType="DECIMAL" property="pointAmt" />
+    <result column="coupon_amt" jdbcType="DECIMAL" property="couponAmt" />
+    <result column="pay_amt" jdbcType="DECIMAL" property="payAmt" />
+    <result column="pay_channel" jdbcType="BIT" property="payChannel" />
+    <result column="source_type" jdbcType="BIT" property="sourceType" />
+    <result column="trade_status" jdbcType="BIT" property="tradeStatus" />
+    <result column="delivery_company" jdbcType="BIT" property="deliveryCompany" />
+    <result column="auto_confirm_day" jdbcType="INTEGER" property="autoConfirmDay" />
+    <result column="confirm_status" jdbcType="BIT" property="confirmStatus" />
+    <result column="use_point" jdbcType="INTEGER" property="usePoint" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    trade_id, acct_id, coupon_id, amt, discount_amt, freight_amt, promotion_amt, point_amt, 
+    coupon_amt, pay_amt, pay_channel, source_type, trade_status, delivery_company, auto_confirm_day, 
+    confirm_status, use_point, pay_time, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trade
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from trade
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.dto.Trade">
+    insert into trade (trade_id, acct_id, coupon_id, 
+      amt, discount_amt, freight_amt, 
+      promotion_amt, point_amt, coupon_amt, 
+      pay_amt, pay_channel, source_type, 
+      trade_status, delivery_company, auto_confirm_day, 
+      confirm_status, use_point, pay_time, 
+      create_time, modify_time)
+    values (#{tradeId,jdbcType=BIGINT}, #{acctId,jdbcType=BIGINT}, #{couponId,jdbcType=BIGINT}, 
+      #{amt,jdbcType=DECIMAL}, #{discountAmt,jdbcType=DECIMAL}, #{freightAmt,jdbcType=DECIMAL}, 
+      #{promotionAmt,jdbcType=DECIMAL}, #{pointAmt,jdbcType=DECIMAL}, #{couponAmt,jdbcType=DECIMAL}, 
+      #{payAmt,jdbcType=DECIMAL}, #{payChannel,jdbcType=BIT}, #{sourceType,jdbcType=BIT}, 
+      #{tradeStatus,jdbcType=BIT}, #{deliveryCompany,jdbcType=BIT}, #{autoConfirmDay,jdbcType=INTEGER}, 
+      #{confirmStatus,jdbcType=BIT}, #{usePoint,jdbcType=INTEGER}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.dto.Trade">
+    insert into trade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tradeId != null">
+        trade_id,
+      </if>
+      <if test="acctId != null">
+        acct_id,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="amt != null">
+        amt,
+      </if>
+      <if test="discountAmt != null">
+        discount_amt,
+      </if>
+      <if test="freightAmt != null">
+        freight_amt,
+      </if>
+      <if test="promotionAmt != null">
+        promotion_amt,
+      </if>
+      <if test="pointAmt != null">
+        point_amt,
+      </if>
+      <if test="couponAmt != null">
+        coupon_amt,
+      </if>
+      <if test="payAmt != null">
+        pay_amt,
+      </if>
+      <if test="payChannel != null">
+        pay_channel,
+      </if>
+      <if test="sourceType != null">
+        source_type,
+      </if>
+      <if test="tradeStatus != null">
+        trade_status,
+      </if>
+      <if test="deliveryCompany != null">
+        delivery_company,
+      </if>
+      <if test="autoConfirmDay != null">
+        auto_confirm_day,
+      </if>
+      <if test="confirmStatus != null">
+        confirm_status,
+      </if>
+      <if test="usePoint != null">
+        use_point,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="acctId != null">
+        #{acctId,jdbcType=BIGINT},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="amt != null">
+        #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="discountAmt != null">
+        #{discountAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="freightAmt != null">
+        #{freightAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="promotionAmt != null">
+        #{promotionAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pointAmt != null">
+        #{pointAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="couponAmt != null">
+        #{couponAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="payAmt != null">
+        #{payAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="payChannel != null">
+        #{payChannel,jdbcType=BIT},
+      </if>
+      <if test="sourceType != null">
+        #{sourceType,jdbcType=BIT},
+      </if>
+      <if test="tradeStatus != null">
+        #{tradeStatus,jdbcType=BIT},
+      </if>
+      <if test="deliveryCompany != null">
+        #{deliveryCompany,jdbcType=BIT},
+      </if>
+      <if test="autoConfirmDay != null">
+        #{autoConfirmDay,jdbcType=INTEGER},
+      </if>
+      <if test="confirmStatus != null">
+        #{confirmStatus,jdbcType=BIT},
+      </if>
+      <if test="usePoint != null">
+        #{usePoint,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.dto.Trade">
+    update trade
+    <set>
+      <if test="acctId != null">
+        acct_id = #{acctId,jdbcType=BIGINT},
+      </if>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="amt != null">
+        amt = #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="discountAmt != null">
+        discount_amt = #{discountAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="freightAmt != null">
+        freight_amt = #{freightAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="promotionAmt != null">
+        promotion_amt = #{promotionAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pointAmt != null">
+        point_amt = #{pointAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="couponAmt != null">
+        coupon_amt = #{couponAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="payAmt != null">
+        pay_amt = #{payAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="payChannel != null">
+        pay_channel = #{payChannel,jdbcType=BIT},
+      </if>
+      <if test="sourceType != null">
+        source_type = #{sourceType,jdbcType=BIT},
+      </if>
+      <if test="tradeStatus != null">
+        trade_status = #{tradeStatus,jdbcType=BIT},
+      </if>
+      <if test="deliveryCompany != null">
+        delivery_company = #{deliveryCompany,jdbcType=BIT},
+      </if>
+      <if test="autoConfirmDay != null">
+        auto_confirm_day = #{autoConfirmDay,jdbcType=INTEGER},
+      </if>
+      <if test="confirmStatus != null">
+        confirm_status = #{confirmStatus,jdbcType=BIT},
+      </if>
+      <if test="usePoint != null">
+        use_point = #{usePoint,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.dto.Trade">
+    update trade
+    set acct_id = #{acctId,jdbcType=BIGINT},
+      coupon_id = #{couponId,jdbcType=BIGINT},
+      amt = #{amt,jdbcType=DECIMAL},
+      discount_amt = #{discountAmt,jdbcType=DECIMAL},
+      freight_amt = #{freightAmt,jdbcType=DECIMAL},
+      promotion_amt = #{promotionAmt,jdbcType=DECIMAL},
+      point_amt = #{pointAmt,jdbcType=DECIMAL},
+      coupon_amt = #{couponAmt,jdbcType=DECIMAL},
+      pay_amt = #{payAmt,jdbcType=DECIMAL},
+      pay_channel = #{payChannel,jdbcType=BIT},
+      source_type = #{sourceType,jdbcType=BIT},
+      trade_status = #{tradeStatus,jdbcType=BIT},
+      delivery_company = #{deliveryCompany,jdbcType=BIT},
+      auto_confirm_day = #{autoConfirmDay,jdbcType=INTEGER},
+      confirm_status = #{confirmStatus,jdbcType=BIT},
+      use_point = #{usePoint,jdbcType=INTEGER},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </update>
+</mapper>

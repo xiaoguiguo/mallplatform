@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.dao.TradeItemMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.dto.TradeItem">
+    <id column="trade_id" jdbcType="BIGINT" property="tradeId" />
+    <result column="merchant_id" jdbcType="BIGINT" property="merchantId" />
+    <result column="merchandise_id" jdbcType="BIGINT" property="merchandiseId" />
+    <result column="merchandise_pic" jdbcType="VARCHAR" property="merchandisePic" />
+    <result column="merchandise_name" jdbcType="VARCHAR" property="merchandiseName" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="merchandise_category_id" jdbcType="BIGINT" property="merchandiseCategoryId" />
+    <result column="promotion_amt" jdbcType="DECIMAL" property="promotionAmt" />
+    <result column="coupon_amt" jdbcType="DECIMAL" property="couponAmt" />
+    <result column="point_amt" jdbcType="DECIMAL" property="pointAmt" />
+    <result column="pay_amt" jdbcType="DECIMAL" property="payAmt" />
+    <result column="gift_growth" jdbcType="INTEGER" property="giftGrowth" />
+    <result column="gift_point" jdbcType="INTEGER" property="giftPoint" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    trade_id, merchant_id, merchandise_id, merchandise_pic, merchandise_name, brand, 
+    price, quantity, merchandise_category_id, promotion_amt, coupon_amt, point_amt, pay_amt, 
+    gift_growth, gift_point, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trade_item
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from trade_item
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.dto.TradeItem">
+    insert into trade_item (trade_id, merchant_id, merchandise_id, 
+      merchandise_pic, merchandise_name, brand, 
+      price, quantity, merchandise_category_id, 
+      promotion_amt, coupon_amt, point_amt, 
+      pay_amt, gift_growth, gift_point, 
+      create_time, modify_time)
+    values (#{tradeId,jdbcType=BIGINT}, #{merchantId,jdbcType=BIGINT}, #{merchandiseId,jdbcType=BIGINT}, 
+      #{merchandisePic,jdbcType=VARCHAR}, #{merchandiseName,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}, #{merchandiseCategoryId,jdbcType=BIGINT}, 
+      #{promotionAmt,jdbcType=DECIMAL}, #{couponAmt,jdbcType=DECIMAL}, #{pointAmt,jdbcType=DECIMAL}, 
+      #{payAmt,jdbcType=DECIMAL}, #{giftGrowth,jdbcType=INTEGER}, #{giftPoint,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.dto.TradeItem">
+    insert into trade_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tradeId != null">
+        trade_id,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="merchandiseId != null">
+        merchandise_id,
+      </if>
+      <if test="merchandisePic != null">
+        merchandise_pic,
+      </if>
+      <if test="merchandiseName != null">
+        merchandise_name,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="merchandiseCategoryId != null">
+        merchandise_category_id,
+      </if>
+      <if test="promotionAmt != null">
+        promotion_amt,
+      </if>
+      <if test="couponAmt != null">
+        coupon_amt,
+      </if>
+      <if test="pointAmt != null">
+        point_amt,
+      </if>
+      <if test="payAmt != null">
+        pay_amt,
+      </if>
+      <if test="giftGrowth != null">
+        gift_growth,
+      </if>
+      <if test="giftPoint != null">
+        gift_point,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseId != null">
+        #{merchandiseId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandisePic != null">
+        #{merchandisePic,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseName != null">
+        #{merchandiseName,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="merchandiseCategoryId != null">
+        #{merchandiseCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="promotionAmt != null">
+        #{promotionAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="couponAmt != null">
+        #{couponAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pointAmt != null">
+        #{pointAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="payAmt != null">
+        #{payAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="giftGrowth != null">
+        #{giftGrowth,jdbcType=INTEGER},
+      </if>
+      <if test="giftPoint != null">
+        #{giftPoint,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.dto.TradeItem">
+    update trade_item
+    <set>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandiseId != null">
+        merchandise_id = #{merchandiseId,jdbcType=BIGINT},
+      </if>
+      <if test="merchandisePic != null">
+        merchandise_pic = #{merchandisePic,jdbcType=VARCHAR},
+      </if>
+      <if test="merchandiseName != null">
+        merchandise_name = #{merchandiseName,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="merchandiseCategoryId != null">
+        merchandise_category_id = #{merchandiseCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="promotionAmt != null">
+        promotion_amt = #{promotionAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="couponAmt != null">
+        coupon_amt = #{couponAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pointAmt != null">
+        point_amt = #{pointAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="payAmt != null">
+        pay_amt = #{payAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="giftGrowth != null">
+        gift_growth = #{giftGrowth,jdbcType=INTEGER},
+      </if>
+      <if test="giftPoint != null">
+        gift_point = #{giftPoint,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.dto.TradeItem">
+    update trade_item
+    set merchant_id = #{merchantId,jdbcType=BIGINT},
+      merchandise_id = #{merchandiseId,jdbcType=BIGINT},
+      merchandise_pic = #{merchandisePic,jdbcType=VARCHAR},
+      merchandise_name = #{merchandiseName,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      quantity = #{quantity,jdbcType=INTEGER},
+      merchandise_category_id = #{merchandiseCategoryId,jdbcType=BIGINT},
+      promotion_amt = #{promotionAmt,jdbcType=DECIMAL},
+      coupon_amt = #{couponAmt,jdbcType=DECIMAL},
+      point_amt = #{pointAmt,jdbcType=DECIMAL},
+      pay_amt = #{payAmt,jdbcType=DECIMAL},
+      gift_growth = #{giftGrowth,jdbcType=INTEGER},
+      gift_point = #{giftPoint,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </update>
+</mapper>

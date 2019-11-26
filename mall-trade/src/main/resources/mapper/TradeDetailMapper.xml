@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.dao.TradeDetailMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.dto.TradeDetail">
+    <id column="trade_id" jdbcType="BIGINT" property="tradeId" />
+    <result column="point" jdbcType="INTEGER" property="point" />
+    <result column="growth" jdbcType="INTEGER" property="growth" />
+    <result column="invoice_type" jdbcType="BIT" property="invoiceType" />
+    <result column="invoice_header" jdbcType="VARCHAR" property="invoiceHeader" />
+    <result column="invoice_content" jdbcType="VARCHAR" property="invoiceContent" />
+    <result column="invoice_receive_phone" jdbcType="VARCHAR" property="invoiceReceivePhone" />
+    <result column="invoice_receive_email" jdbcType="VARCHAR" property="invoiceReceiveEmail" />
+    <result column="receive_name" jdbcType="VARCHAR" property="receiveName" />
+    <result column="receive_phone" jdbcType="VARCHAR" property="receivePhone" />
+    <result column="receive_post_code" jdbcType="VARCHAR" property="receivePostCode" />
+    <result column="receive_province" jdbcType="VARCHAR" property="receiveProvince" />
+    <result column="receive_city" jdbcType="VARCHAR" property="receiveCity" />
+    <result column="receive_region" jdbcType="VARCHAR" property="receiveRegion" />
+    <result column="receive_detail_address" jdbcType="VARCHAR" property="receiveDetailAddress" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+    <result column="receive_time" jdbcType="TIMESTAMP" property="receiveTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    trade_id, point, growth, invoice_type, invoice_header, invoice_content, invoice_receive_phone, 
+    invoice_receive_email, receive_name, receive_phone, receive_post_code, receive_province, 
+    receive_city, receive_region, receive_detail_address, note, delivery_time, receive_time, 
+    create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trade_detail
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from trade_detail
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.dto.TradeDetail">
+    insert into trade_detail (trade_id, point, growth, 
+      invoice_type, invoice_header, invoice_content, 
+      invoice_receive_phone, invoice_receive_email, 
+      receive_name, receive_phone, receive_post_code, 
+      receive_province, receive_city, receive_region, 
+      receive_detail_address, note, delivery_time, 
+      receive_time, create_time, modify_time
+      )
+    values (#{tradeId,jdbcType=BIGINT}, #{point,jdbcType=INTEGER}, #{growth,jdbcType=INTEGER}, 
+      #{invoiceType,jdbcType=BIT}, #{invoiceHeader,jdbcType=VARCHAR}, #{invoiceContent,jdbcType=VARCHAR}, 
+      #{invoiceReceivePhone,jdbcType=VARCHAR}, #{invoiceReceiveEmail,jdbcType=VARCHAR}, 
+      #{receiveName,jdbcType=VARCHAR}, #{receivePhone,jdbcType=VARCHAR}, #{receivePostCode,jdbcType=VARCHAR}, 
+      #{receiveProvince,jdbcType=VARCHAR}, #{receiveCity,jdbcType=VARCHAR}, #{receiveRegion,jdbcType=VARCHAR}, 
+      #{receiveDetailAddress,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{deliveryTime,jdbcType=TIMESTAMP}, 
+      #{receiveTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.dto.TradeDetail">
+    insert into trade_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tradeId != null">
+        trade_id,
+      </if>
+      <if test="point != null">
+        point,
+      </if>
+      <if test="growth != null">
+        growth,
+      </if>
+      <if test="invoiceType != null">
+        invoice_type,
+      </if>
+      <if test="invoiceHeader != null">
+        invoice_header,
+      </if>
+      <if test="invoiceContent != null">
+        invoice_content,
+      </if>
+      <if test="invoiceReceivePhone != null">
+        invoice_receive_phone,
+      </if>
+      <if test="invoiceReceiveEmail != null">
+        invoice_receive_email,
+      </if>
+      <if test="receiveName != null">
+        receive_name,
+      </if>
+      <if test="receivePhone != null">
+        receive_phone,
+      </if>
+      <if test="receivePostCode != null">
+        receive_post_code,
+      </if>
+      <if test="receiveProvince != null">
+        receive_province,
+      </if>
+      <if test="receiveCity != null">
+        receive_city,
+      </if>
+      <if test="receiveRegion != null">
+        receive_region,
+      </if>
+      <if test="receiveDetailAddress != null">
+        receive_detail_address,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time,
+      </if>
+      <if test="receiveTime != null">
+        receive_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="point != null">
+        #{point,jdbcType=INTEGER},
+      </if>
+      <if test="growth != null">
+        #{growth,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceType != null">
+        #{invoiceType,jdbcType=BIT},
+      </if>
+      <if test="invoiceHeader != null">
+        #{invoiceHeader,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceContent != null">
+        #{invoiceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceReceivePhone != null">
+        #{invoiceReceivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceReceiveEmail != null">
+        #{invoiceReceiveEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveName != null">
+        #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePhone != null">
+        #{receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePostCode != null">
+        #{receivePostCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveProvince != null">
+        #{receiveProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCity != null">
+        #{receiveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveRegion != null">
+        #{receiveRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDetailAddress != null">
+        #{receiveDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTime != null">
+        #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.dto.TradeDetail">
+    update trade_detail
+    <set>
+      <if test="point != null">
+        point = #{point,jdbcType=INTEGER},
+      </if>
+      <if test="growth != null">
+        growth = #{growth,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceType != null">
+        invoice_type = #{invoiceType,jdbcType=BIT},
+      </if>
+      <if test="invoiceHeader != null">
+        invoice_header = #{invoiceHeader,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceContent != null">
+        invoice_content = #{invoiceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceReceivePhone != null">
+        invoice_receive_phone = #{invoiceReceivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceReceiveEmail != null">
+        invoice_receive_email = #{invoiceReceiveEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveName != null">
+        receive_name = #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePhone != null">
+        receive_phone = #{receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePostCode != null">
+        receive_post_code = #{receivePostCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveProvince != null">
+        receive_province = #{receiveProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCity != null">
+        receive_city = #{receiveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveRegion != null">
+        receive_region = #{receiveRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveDetailAddress != null">
+        receive_detail_address = #{receiveDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTime != null">
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTime != null">
+        receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.dto.TradeDetail">
+    update trade_detail
+    set point = #{point,jdbcType=INTEGER},
+      growth = #{growth,jdbcType=INTEGER},
+      invoice_type = #{invoiceType,jdbcType=BIT},
+      invoice_header = #{invoiceHeader,jdbcType=VARCHAR},
+      invoice_content = #{invoiceContent,jdbcType=VARCHAR},
+      invoice_receive_phone = #{invoiceReceivePhone,jdbcType=VARCHAR},
+      invoice_receive_email = #{invoiceReceiveEmail,jdbcType=VARCHAR},
+      receive_name = #{receiveName,jdbcType=VARCHAR},
+      receive_phone = #{receivePhone,jdbcType=VARCHAR},
+      receive_post_code = #{receivePostCode,jdbcType=VARCHAR},
+      receive_province = #{receiveProvince,jdbcType=VARCHAR},
+      receive_city = #{receiveCity,jdbcType=VARCHAR},
+      receive_region = #{receiveRegion,jdbcType=VARCHAR},
+      receive_detail_address = #{receiveDetailAddress,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </update>
+</mapper>

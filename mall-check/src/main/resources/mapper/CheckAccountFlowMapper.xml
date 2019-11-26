@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.dao.CheckAccountFlowMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.dto.CheckAccountFlow">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="acct_flow_id" jdbcType="BIGINT" property="acctFlowId" />
+    <result column="acct_id" jdbcType="BIGINT" property="acctId" />
+    <result column="merchant_id" jdbcType="BIGINT" property="merchantId" />
+    <result column="trade_id" jdbcType="BIGINT" property="tradeId" />
+    <result column="pay_type" jdbcType="TINYINT" property="payType" />
+    <result column="amt" jdbcType="DECIMAL" property="amt" />
+    <result column="trade_time" jdbcType="TIMESTAMP" property="tradeTime" />
+    <result column="trade_status" jdbcType="TINYINT" property="tradeStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, acct_flow_id, acct_id, merchant_id, trade_id, pay_type, amt, trade_time, trade_status, 
+    create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from check_account_flow
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from check_account_flow
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.dto.CheckAccountFlow">
+    insert into check_account_flow (id, acct_flow_id, acct_id, 
+      merchant_id, trade_id, pay_type, 
+      amt, trade_time, trade_status, 
+      create_time, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{acctFlowId,jdbcType=BIGINT}, #{acctId,jdbcType=BIGINT}, 
+      #{merchantId,jdbcType=BIGINT}, #{tradeId,jdbcType=BIGINT}, #{payType,jdbcType=TINYINT}, 
+      #{amt,jdbcType=DECIMAL}, #{tradeTime,jdbcType=TIMESTAMP}, #{tradeStatus,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.dto.CheckAccountFlow">
+    insert into check_account_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="acctFlowId != null">
+        acct_flow_id,
+      </if>
+      <if test="acctId != null">
+        acct_id,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="tradeId != null">
+        trade_id,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="amt != null">
+        amt,
+      </if>
+      <if test="tradeTime != null">
+        trade_time,
+      </if>
+      <if test="tradeStatus != null">
+        trade_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="acctFlowId != null">
+        #{acctFlowId,jdbcType=BIGINT},
+      </if>
+      <if test="acctId != null">
+        #{acctId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="amt != null">
+        #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeTime != null">
+        #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeStatus != null">
+        #{tradeStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.dto.CheckAccountFlow">
+    update check_account_flow
+    <set>
+      <if test="acctFlowId != null">
+        acct_flow_id = #{acctFlowId,jdbcType=BIGINT},
+      </if>
+      <if test="acctId != null">
+        acct_id = #{acctId,jdbcType=BIGINT},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeId != null">
+        trade_id = #{tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="amt != null">
+        amt = #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeTime != null">
+        trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeStatus != null">
+        trade_status = #{tradeStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.dto.CheckAccountFlow">
+    update check_account_flow
+    set acct_flow_id = #{acctFlowId,jdbcType=BIGINT},
+      acct_id = #{acctId,jdbcType=BIGINT},
+      merchant_id = #{merchantId,jdbcType=BIGINT},
+      trade_id = #{tradeId,jdbcType=BIGINT},
+      pay_type = #{payType,jdbcType=TINYINT},
+      amt = #{amt,jdbcType=DECIMAL},
+      trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+      trade_status = #{tradeStatus,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

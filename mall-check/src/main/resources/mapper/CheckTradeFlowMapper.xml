@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.doudouj.dao.CheckTradeFlowMapper">
+  <resultMap id="BaseResultMap" type="com.doudouj.dto.CheckTradeFlow">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="trade_id" jdbcType="BIGINT" property="tradeId" />
+    <result column="acct_id" jdbcType="BIGINT" property="acctId" />
+    <result column="amt" jdbcType="DECIMAL" property="amt" />
+    <result column="pay_amt" jdbcType="DECIMAL" property="payAmt" />
+    <result column="pay_channel" jdbcType="BIT" property="payChannel" />
+    <result column="source_type" jdbcType="BIT" property="sourceType" />
+    <result column="trade_status" jdbcType="BIT" property="tradeStatus" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, trade_id, acct_id, amt, pay_amt, pay_channel, source_type, trade_status, pay_time, 
+    create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from check_trade_flow
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from check_trade_flow
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.doudouj.dto.CheckTradeFlow">
+    insert into check_trade_flow (id, trade_id, acct_id, 
+      amt, pay_amt, pay_channel, 
+      source_type, trade_status, pay_time, 
+      create_time, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{tradeId,jdbcType=BIGINT}, #{acctId,jdbcType=BIGINT}, 
+      #{amt,jdbcType=DECIMAL}, #{payAmt,jdbcType=DECIMAL}, #{payChannel,jdbcType=BIT}, 
+      #{sourceType,jdbcType=BIT}, #{tradeStatus,jdbcType=BIT}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.doudouj.dto.CheckTradeFlow">
+    insert into check_trade_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tradeId != null">
+        trade_id,
+      </if>
+      <if test="acctId != null">
+        acct_id,
+      </if>
+      <if test="amt != null">
+        amt,
+      </if>
+      <if test="payAmt != null">
+        pay_amt,
+      </if>
+      <if test="payChannel != null">
+        pay_channel,
+      </if>
+      <if test="sourceType != null">
+        source_type,
+      </if>
+      <if test="tradeStatus != null">
+        trade_status,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="acctId != null">
+        #{acctId,jdbcType=BIGINT},
+      </if>
+      <if test="amt != null">
+        #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="payAmt != null">
+        #{payAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="payChannel != null">
+        #{payChannel,jdbcType=BIT},
+      </if>
+      <if test="sourceType != null">
+        #{sourceType,jdbcType=BIT},
+      </if>
+      <if test="tradeStatus != null">
+        #{tradeStatus,jdbcType=BIT},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.doudouj.dto.CheckTradeFlow">
+    update check_trade_flow
+    <set>
+      <if test="tradeId != null">
+        trade_id = #{tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="acctId != null">
+        acct_id = #{acctId,jdbcType=BIGINT},
+      </if>
+      <if test="amt != null">
+        amt = #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="payAmt != null">
+        pay_amt = #{payAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="payChannel != null">
+        pay_channel = #{payChannel,jdbcType=BIT},
+      </if>
+      <if test="sourceType != null">
+        source_type = #{sourceType,jdbcType=BIT},
+      </if>
+      <if test="tradeStatus != null">
+        trade_status = #{tradeStatus,jdbcType=BIT},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.doudouj.dto.CheckTradeFlow">
+    update check_trade_flow
+    set trade_id = #{tradeId,jdbcType=BIGINT},
+      acct_id = #{acctId,jdbcType=BIGINT},
+      amt = #{amt,jdbcType=DECIMAL},
+      pay_amt = #{payAmt,jdbcType=DECIMAL},
+      pay_channel = #{payChannel,jdbcType=BIT},
+      source_type = #{sourceType,jdbcType=BIT},
+      trade_status = #{tradeStatus,jdbcType=BIT},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
