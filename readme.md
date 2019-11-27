@@ -18,3 +18,9 @@
     通过自定义创建数据源来创建各个数据库连接，对应的配置类在config目录下
     @ConfigurationProperties ，推荐使用这个注解配置多数据源信息
     添加测试用例
+    
+#### 添加Rocketmq
+    添加mq的简单实用demo，之后在此基础上构建消息中心、消息处理工具等
+    
+#### 添加Redis
+    todo

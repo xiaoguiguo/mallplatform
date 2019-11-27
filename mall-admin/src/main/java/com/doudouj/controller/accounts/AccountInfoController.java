@@ -28,7 +28,6 @@ public class AccountInfoController {
 
     @RequestMapping("/findById")
     public AccountInfo findById(long id) {
-        AccountInfo accountInfo = accountInfoService.findById(id);
-        return accountInfo;
+        return accountInfoService.findById(id);
     }
 }

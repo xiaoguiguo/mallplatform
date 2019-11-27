@@ -21,7 +21,6 @@ public class SysRoleController {
 
     @RequestMapping("/findById")
     public SysRole findById(Long id) {
-        SysRole role = sysRoleService.findById(id);
-        return role;
+        return sysRoleService.findById(id);
     }
 }

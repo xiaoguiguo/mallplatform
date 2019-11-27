@@ -21,7 +21,6 @@ public class CheckAccountFlowController {
 
     @RequestMapping("/findById")
     public CheckAccountFlow findById(Long id) {
-        CheckAccountFlow checkAccountFlow = checkAccountFlowService.findById(id);
-        return checkAccountFlow;
+        return checkAccountFlowService.findById(id);
     }
 }

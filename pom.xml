@@ -93,6 +93,12 @@
             <artifactId>hutool-all</artifactId>
             <version>5.0.6</version>
         </dependency>
+        <!--json处理-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.62</version>
+        </dependency>
     </dependencies>
 
     <repositories>
